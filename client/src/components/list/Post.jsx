@@ -8,12 +8,12 @@ const Post = ({ id }) => {
 					{/* Project name */}
 					<div className="flex flex-1 items-center justify-start space-x-4 ml-8 mt-8">
 						<div className="flex items-center justify-center">
-							<div className="w-10 h-10 rounded-full overflow-hidden">
+							<div className="w-16 h-16 rounded-full overflow-hidden">
 								<img src={""} alt={""} className="w-full h-full object-cover" />
 							</div>
 						</div>
 						<div className="flex flex-col items-start">
-							<div className="flex flex-1 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">OpenUET</div>
+							<div className="flex flex-1 text-2xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">OpenUET</div>
 							<div className="flex flex-1 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Project Title</div>
 						</div>
 					</div>
