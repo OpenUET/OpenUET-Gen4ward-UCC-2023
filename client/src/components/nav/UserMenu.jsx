@@ -1,29 +1,17 @@
-// import handleCloseDialog from '@/utils/handleCloseDialog';
-// import { createQueryString, deleteQueryString } from '@/utils/queryString';
-// import dynamic from 'next/dynamic';
-// import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { AiOutlineMenu } from 'react-icons/ai';
+import { useEffect, useRef, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import MenuItem from '../MenuItem';
 import Avatar from '../profile/Avatar';
 import AuthPopup from './AuthPopup';
-import { toast } from 'react-hot-toast';
-// import EditProfilePopup from '../profile/EditProfilePopup';
-// const NotificationPopup = dynamic(() => import('../notification/NotificationPopup'), { ssr: false })
 
-export default function UserMenu() {
+export default function UserMenu({ session }) {
   const menuRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const authModalRef2 = useRef(null);
-  const profileModalRef = useRef(null);
-
   const [activeTab, setActiveTab] = useState(''); // login, signup, verify, set-password, edit-profile-...
-  const [session, setSession] = useState(null);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      // handleCloseDialog(e, authModalRef1.current)
       if (menuRef.current && !menuRef.current.contains(e.target)) {
         setMenuOpen(false);
       }
@@ -40,15 +28,14 @@ export default function UserMenu() {
   }
 
   const handleHelp = () => {
-    toast('Chức năng đang được phát triển', { icon: '🚧' })
+
   }
 
   return (
     <div className={`flex justify-end flex-shrink-0 relative`} >
       <div ref={menuRef} className="flex flex-row items-center gap-3">
-        <button onClick={() => setMenuOpen(!menuOpen)} className="p-4 md:py-2 md:pl-4 md:pr-3 border-[1px] border-neutral-200 flex flex-row items-center gap-2 rounded-full cursor-pointer hover:shadow-md transition">
-          <AiOutlineMenu />
-          <div className="hidden md:block flex-shrink-0">
+        <button onClick={() => setMenuOpen(!menuOpen)} className="py-2 px-3 border-[1px] border-neutral-200 flex flex-row items-center gap-2 rounded-full cursor-pointer hover:shadow-md transition">
+          <div className="flex-shrink-0">
             <Avatar />
           </div>
         </button>
@@ -71,9 +58,8 @@ export default function UserMenu() {
                 <MenuItem
                   label="Thông tin cá nhân"
                   onClick={() => {
-                    // popup
+                    // change route
                   }}
-                  light
                 />
                 <MenuItem
                   label="Trợ giúp"
@@ -106,9 +92,6 @@ export default function UserMenu() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />
-
-      {/* <EditProfilePopup
-      /> */}
     </div>
   );
 };
