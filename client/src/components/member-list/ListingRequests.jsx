@@ -26,7 +26,7 @@ const ListingRequests = ({
     return null
 
   return (
-    <div className="rounded-xl border-[1px] border-neutral-700 overflow-hidden">
+    <div className="rounded-xl border border-neutral-700 overflow-hidden">
       <div className="flex flex-col gap-4 p-4">
         <div className="text-xl font-semibold text-white">Yêu cầu</div>
 

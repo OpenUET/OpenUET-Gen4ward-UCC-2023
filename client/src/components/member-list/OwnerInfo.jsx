@@ -12,7 +12,7 @@ export default function OwnerInfo({
   // id
 }) {
   return (
-    <div className="rounded-xl border-[1px] border-neutral-700 overflow-hidden flex flex-col gap-2 p-4">
+    <div className="rounded-xl border border-neutral-700 overflow-hidden flex flex-col gap-2 p-4">
       <div className="text-xl font-semibold text-white">Project manager</div>
 
       <div className="flex items-center h-full">

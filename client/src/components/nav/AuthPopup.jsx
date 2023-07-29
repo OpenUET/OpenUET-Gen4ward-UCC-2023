@@ -38,7 +38,7 @@ export default function AuthPopup({ activeTab, setActiveTab }) {
 
   return (
     <>
-      <dialog ref={authModalRef} className='popup sm:w-[540px] w-full rounded-2xl overflow-x-hidden h-[50vh]'>
+      <dialog ref={authModalRef} className='popup sm:w-[540px] w-full rounded-2xl overflow-x-hidden h-[50vh] bg-black-50 '>
         <div className='w-full absolute left-0'>
           <LoginPage onBack={handleCloseDialog} />
         </div>

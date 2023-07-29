@@ -9,7 +9,7 @@ const RightSideBar = () => {
   }
 
   return (
-    <div className="flex-col inline-flex items-start justify-start gap-3 flex-1 p-4 pl-0">
+    <div className="flex-col flex items-start justify-start gap-3 py-4">
       <div className="flex flex-col w-full">
         <a href="/newpost">
           <div className={`text-blue-500 hover:text-blue-400 flex items-center justify-center p-4 rounded-xl cursor-pointer border-2 border-blue-500 hover:border-blue-400 transition-colors duration-400`}>
@@ -19,7 +19,7 @@ const RightSideBar = () => {
       </div>
 
       <div className="flex flex-col w-full">
-        <div className="flex py-4 justify-between border-t-2 border-white">
+        <div className="flex py-4 justify-between">
           <div className="flex text-white uppercase text-sm font-medium">
             Shorcut
           </div>
