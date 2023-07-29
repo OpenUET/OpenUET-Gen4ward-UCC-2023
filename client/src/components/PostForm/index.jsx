@@ -159,11 +159,11 @@ function PostForm({ update }) {
       <div className='flex flex-col w-full text-white'>
         {/* Project cover */}
         <div
-          className={`flex flex-col w-full h-[250px] rounded-xl object-contain items-end justify-between mb-6 relative`}
+          className={`flex flex-col w-full h-[250px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-xl object-contain items-end justify-between mb-6 relative`}
         >
           <img
             src={bg?.preview || ''}
-            className='absolute top-0 h-full right-[50%]  translate-x-1/2 object-center object-contain'
+            className='absolute top-0 h-full right-[50%] z-0   translate-x-1/2 object-center object-contain'
           />
           <label
             htmlFor='bg'
@@ -185,10 +185,10 @@ function PostForm({ update }) {
                 </label>
                 <input accept='image/*' type='file' id='logo' onChange={handleLogo} className='hidden' />
                 <div className='w-16 h-16 rounded-full overflow-hidden '>
-                  <img src={logo?.preview || ''} alt={''} className='w-full outline-none h-full object-cover' />
+                  <img src={logo?.preview || '../../assets//download.jpg'} alt={''} className='w-full outline-none bg-gradient-to-l from-indigo-500 via-purple-500 to-pink-500  h-full object-cover' />
                 </div>
               </div>
-              <div className='flex flex-col items-start w-1/2'>
+              <div className='flex flex-col items-start w-1/2 z-10 '>
                 <input
                   ref={pname}
                   className={
