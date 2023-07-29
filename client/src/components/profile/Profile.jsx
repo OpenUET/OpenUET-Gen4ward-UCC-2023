@@ -61,7 +61,7 @@ const Profile = ({
           ref={refs.setFloating}
           style={floatingStyles}
           {...getFloatingProps()}
-          className="relative w-[360px] border-[1px] rounded-xl bg-white flex gap-4 p-4 z-[5]"
+          className="relative w-[360px] border rounded-xl bg-white flex gap-4 p-4 z-[5]"
         >
           <div className="flex-shrink-0">
             <img

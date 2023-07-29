@@ -19,7 +19,7 @@ const Post = ({ id }) => {
 					</div>
 
 					{/* Project status */}
-					<div className="flex flex-1 justify-center mr-8 mt-8">
+					<div className="flex flex-1 justify-center ml-8 mr-0 md:mr-8 md:ml-0 mt-8">
 						<div className="flex flex-col items-start mr-12">
 							<div className="flex flex-1 text-white uppercase drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Star</div>
 							<div className="flex flex-1 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">100</div>
