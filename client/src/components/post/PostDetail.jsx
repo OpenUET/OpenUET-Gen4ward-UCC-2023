@@ -1,6 +1,22 @@
 import React from 'react'
+import './PostDetail.css'
+import { useState } from 'react';
+import { AiOutlineStar } from "react-icons/ai";
+import { AiFillStar } from "react-icons/ai";
 
 const PostDetail = () => {
+  const [star, setStar] = useState(false);
+  const [status, setStatus] = useState("active");
+
+  const handleClickStar = () => {
+    setStar(!star);
+  }
+
+  const handleClickStatus = () => {
+    if (status == "active") setStatus("archived");
+    else setStatus("active");
+  }
+
   return (
     <div className="bg-black-100 inline-flex items-start justify-center gap-3 flex-1 p-4 w-full">
         <div className="flex flex-col">
@@ -27,9 +43,9 @@ const PostDetail = () => {
                             <div className="flex flex-1 font-bold text-white uppercase drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Star</div>
                             <div className="flex flex-1 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">100</div>
                         </div>
-                        <div className="flex flex-col items-start mr-12 uppercase">
+                        <div onClick={() => handleClickStatus()} className="flex flex-col items-start mr-12 uppercase">
                             <div className="flex flex-1 font-bold text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Status</div>
-                            <div className="flex flex-1 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Active</div>
+                            <div className="flex flex-1 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">{status}</div>
                         </div>
                         <div className="flex flex-col items-start mr-12 uppercase">
                             <div className="flex flex-1 font-bold text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Tracked Time</div>
@@ -104,17 +120,29 @@ const PostDetail = () => {
                 <div className="flex w-full">
                     <div className="flex flex-1 mt-8 text-white text-xl font-bold">OpenUET</div>
                     <div className="flex flex-1 items-end justify-end w-full">
-                        <div className="flex cursor-pointer bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1 mr-2">Star</div>
-                        <div className="flex cursor-pointer bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1 mr-2">Fork</div>
-                        <div className="flex cursor-pointer bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1">Visit Github</div>
+                        <div onClick={() => handleClickStar()} className={`${star == true ? "text-yellow-400 border-yellow-400" : ""} flex items-center justify-center cursor-pointer bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1 mr-2`}>
+                            {star == true ? (
+                                <AiFillStar className={`mr-1 scale-up-center`}/>
+                            ) : (
+                                <AiOutlineStar className={`mr-1`}/>
+                            )}
+                            Star
+                        </div>
+                        {status == "archived" ? (
+                            <div className="flex cursor-pointer bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1 mr-2">Fork</div>
+                        ) : (
+                            <></>
+                        )}
+                        <div className="flex cursor-pointer bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1"><a href="https://github.com">Visit Github</a></div>
                     </div>
                 </div>
-                <div className="flex w-full mt-8 text-white">
+                <div className="flex flex-col w-full mt-8 text-white">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac facilisis libero, in aliquam enim. Fusce nec venenatis orci. Praesent placerat nisi et purus rutrum, eget porttitor massa vulputate. Nulla ultricies vestibulum diam et aliquam. Nulla faucibus eleifend commodo. Suspendisse at orci lectus. Duis ac varius ante. Nunc rhoncus nulla et risus fermentum, nec pellentesque ipsum cursus. Donec sed massa mollis metus viverra faucibus.
 
 Aliquam auctor id ex ut fermentum. Suspendisse suscipit velit dui, nec lobortis ante condimentum nec. Curabitur bibendum augue quis risus tempus, sed sodales nulla gravida. Donec dapibus mi nec blandit placerat. Fusce lobortis fringilla arcu eu cursus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper nibh varius accumsan tincidunt. Duis fermentum justo nec libero ultricies mollis sit amet sit amet turpis. Aenean purus sem, luctus nec sollicitudin nec, pharetra nec turpis. Morbi mollis malesuada mollis. Nunc neque massa, cursus ac nisi vitae, hendrerit sollicitudin est. Aliquam ac fermentum orci, nec posuere ipsum.
 
 Quisque a magna pretium, interdum odio eget, faucibus orci. Etiam erat lectus, tristique id sagittis nec, vehicula at tellus. Nunc ut cursus lacus. Praesent fermentum ornare orci, sit amet sodales ipsum ullamcorper et. Morbi auctor convallis scelerisque. Duis vel odio vel leo posuere efficitur. Fusce eleifend fermentum ligula at faucibus. Aliquam pulvinar blandit laoreet. Nulla tristique ex dui, eget vehicula nisl sodales at. Pellentesque pellentesque, erat vitae mollis dictum, libero arcu malesuada sem, et pharetra turpis mi non magna. Nullam ac massa neque. Suspendisse iaculis posuere orci, vel iaculis arcu pulvinar sit amet. Mauris lacus est, finibus viverra risus vitae, molestie cursus massa.
+                {/* <img src="/images/Nachoneko.jpg" alt="" /> */}
                 </div>
             </div>
         </div>
