@@ -36,7 +36,7 @@ function initRoutes() {
   (async () => {
     try {
       await mongoose.connect(appConfig.mongoURI,{
-        dbName: 'tododay',
+        dbName: 'openuet',
       });
       console.log("Connect to mongoose is successful!");
     } catch (error) {
