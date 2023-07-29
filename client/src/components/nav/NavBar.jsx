@@ -2,6 +2,7 @@ import { useState } from "react";
 import Logo from "./Logo";
 import UserMenu from "./UserMenu";
 import Notification from "./Notification";
+import SearchBar from "./SearchBar";
 
 export default function NavBar() {
   const [session, setSession] = useState(null);
@@ -15,7 +16,7 @@ export default function NavBar() {
           </div>
 
           <div className="flex flex-[2] items-center gap-2 w-full md:w-auto">
-            {/* <SearchBar /> */}
+            <SearchBar />
           </div>
 
           <div className="lg:flex-1 flex gap-2 items-center justify-end">
