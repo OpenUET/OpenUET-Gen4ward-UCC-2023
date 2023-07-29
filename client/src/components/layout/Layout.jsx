@@ -4,15 +4,13 @@ import LeftSideBar from './LeftSIdeBar'
 
 const Layout = ({ children }) => {
   return (
-    <div>
-        <div className="flex">
-            <LeftSideBar />
-            <div className="flex w-[60%]">
-                <main className="w-full">{ children }</main>
-            </div>
-            {/* <RightSideBar /> */}
-            <div className="bg-black-100 flex-col inline-flex items-start justify-start gap-3 flex-1 p-4 mt-20"></div>
+    <div className="max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4 pt-20">
+      <div className="flex">
+        <LeftSideBar />
+        <div className="flex w-[70%]">
+          <main className="w-full">{children}</main>
         </div>
+      </div>
     </div>
   )
 }
