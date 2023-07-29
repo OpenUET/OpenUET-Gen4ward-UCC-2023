@@ -2,7 +2,7 @@ import React from 'react'
 
 const RightSideBar = () => {
   return (
-    <div className="bg-black-100 flex-col inline-flex items-start justify-start gap-3 flex-1 p-4">
+    <div className="bg-black-100 flex-col inline-flex items-start justify-start gap-3 flex-1 p-4 mt-20">
       <div className="flex flex-col w-full">
         <div className="flex py-4 justify-between border-b-2 border-white">
           <div className="flex text-white text-base font-medium">

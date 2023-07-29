@@ -6,11 +6,10 @@ import Navbar from './Navbar'
 const Layout = ({ children }) => {
   return (
     <div>
-        <Navbar />
         <div className="flex">
             <LeftSideBar />
             <div className="flex w-[60%]">
-                <main className="">{ children }</main>
+                <main className="w-full">{ children }</main>
             </div>
             <RightSideBar />
         </div>
