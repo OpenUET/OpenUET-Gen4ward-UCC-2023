@@ -17,7 +17,6 @@ const notification_data_example = {
     }
   ]
 }
-
 export default function Notification({ session }) {
   const menuRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
