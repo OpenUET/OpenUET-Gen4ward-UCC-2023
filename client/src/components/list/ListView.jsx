@@ -15,10 +15,17 @@ const ListView = () => {
     <div className="bg-black-100 flex-col inline-flex items-start justify-center gap-4 flex-1 py-4 w-full">
       {posts.map(post => (
         <Post
-          key={post.id}
-          id={post.id}
+          key={post._id}
+          id={post._id}
           title={post.title}
           projectName={post.projectName}
+          status={post.status}
+          logoUrl={post.logo_url}
+          coverImgUrl={post.cover_img_url}
+          stars={post.stars}
+          members={post.members}
+          techs={post.techs}
+          tags={post.tags}
         />
       ))}
     </div>

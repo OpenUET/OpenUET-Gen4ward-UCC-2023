@@ -13,7 +13,7 @@ export const getPostById = async (req, res) => {
 
 export const createPost = async (req, res) => {
   const { data, userId: owner } = req.body;
-  const { title, projectName, content, tags, forkedProjectId, githubLink } = data;
+  const { title, projectName, content, tags, forkedProjectId, githubLink, status, cover_img_url, logo_url } = data;
 
   const resp = await postService.createPost({
     owner,
@@ -23,6 +23,7 @@ export const createPost = async (req, res) => {
     tags,
     forkedProjectId,
     githubLink,
+    status, cover_img_url, logo_url
   });
   return res.status(201).json(resp);
 };
@@ -31,7 +32,7 @@ export const updatePostById = async (req, res) => {
   const postId = req.params.id;
   const { data, userId: ownerId } = req.body;
 
-  const { title, projectName, content, tags, forkedProjectId, githubLink } = data;
+  const { title, projectName, content, tags, forkedProjectId, githubLink, status, cover_img_url, logo_url } = data;
 
   const resp = await postService.updatePostById(postId, {
     ownerId,
@@ -41,6 +42,7 @@ export const updatePostById = async (req, res) => {
     tags,
     forkedProjectId,
     githubLink,
+    status, cover_img_url, logo_url
   });
   return res.status(200).json(resp);
 };
