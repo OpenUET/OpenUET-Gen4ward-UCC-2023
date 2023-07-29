@@ -5,35 +5,35 @@ const PostDetail = () => {
     <div className="bg-black-100 inline-flex items-start justify-center gap-3 flex-1 p-4 w-full">
         <div className="flex flex-col">
             {/* Project cover */}
-            <div className="flex flex-col w-full h-[12.375rem] bg-black-50 rounded-xl items-end justify-between mb-6">
+            <div className="bg-[url('/images/Nachoneko.jpg')] bg-cover flex flex-col w-full h-[12.375rem] rounded-xl items-end justify-between mb-6">
                 <div className="flex flex-1"></div>
                 <div className="flex items-end justify-between w-full">
                     {/* Project name */}
                     <div className="flex flex-1 items-center justify-start space-x-4 ml-8 mb-8">
                         <div className="flex items-center justify-center">
-                        <div className="w-10 h-10 rounded-full overflow-hidden">
+                        <div className="w-16 h-16 rounded-full overflow-hidden">
                             <img src={""} alt={""} className="w-full h-full object-cover" />
                         </div>
                         </div>
                         <div className="flex flex-col items-start">
-                        <div className="flex flex-1 text-white">OpenUET</div>
-                        <div className="flex flex-1 text-white">Project Title</div>
+                        <div className="flex flex-1 text-white text-2xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">OpenUET</div>
+                        <div className="flex flex-1 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Project Title</div>
                         </div>
                     </div>
                 
                     {/* Project status */}
                     <div className="flex flex-1 justify-center mr-8 mb-8">
                         <div className="flex flex-col items-start mr-12">
-                            <div className="flex flex-1 text-white uppercase">Star</div>
-                            <div className="flex flex-1 text-white">100</div>
+                            <div className="flex flex-1 font-bold text-white uppercase drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Star</div>
+                            <div className="flex flex-1 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">100</div>
                         </div>
                         <div className="flex flex-col items-start mr-12 uppercase">
-                            <div className="flex flex-1 text-white">Status</div>
-                            <div className="flex flex-1 text-white">Active</div>
+                            <div className="flex flex-1 font-bold text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Status</div>
+                            <div className="flex flex-1 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Active</div>
                         </div>
                         <div className="flex flex-col items-start mr-12 uppercase">
-                            <div className="flex flex-1 text-white">Tracked Time</div>
-                            <div className="flex flex-1 text-white">10h 20m</div>
+                            <div className="flex flex-1 font-bold text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Tracked Time</div>
+                            <div className="flex flex-1 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">10h 20m</div>
                         </div>
                     </div>
                 </div>
