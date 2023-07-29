@@ -3,16 +3,16 @@ import { BiNotification } from 'react-icons/bi';
 import MenuItem from '../MenuItem';
 import { useNavigate } from "react-router-dom";
 
-// Todo: consider replace title with name + type + post title
+// Todo: consider replace title with name + type + post title and url with id
 const notification_data_example = {
   lastRead: 0,
   recent_notifications: [
     {
-      title: "Nguyễn Văn A want to join your team",
+      title: "Nguyễn Văn A want to join your team at Aninagori",
       url: "/posts/1",
     },
     {
-      title: "Nguyễn Văn B voted for your post",
+      title: "Nguyễn Văn B and others voted for your post at Calendoro",
       url: "/posts/2",
     }
   ]
@@ -46,7 +46,7 @@ export default function Notification({ session }) {
           </div>
         </button>
 
-        <dialog open={menuOpen} className="rounded-xl shadow-md w-[50vw] sm:w-[40vw] lg:w-[320px] bg-white overflow-hidden right-0 top-14 text-sm mr-0 p-0 z-10">
+        <dialog open={menuOpen} className="rounded-xl shadow-md w-[50vw] sm:w-[36vw] lg:w-[320px] bg-white overflow-hidden right-0 top-14 text-sm mr-0 p-0 z-10">
           <div onClick={() => setMenuOpen(false)} className="flex flex-col w-full cursor-pointer">
             {notificationList.map((notification, index) => (
               <MenuItem
