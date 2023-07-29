@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Post = () => {
+const Post = (id) => {
 
   return (
     <a href="/post" className="w-full">
