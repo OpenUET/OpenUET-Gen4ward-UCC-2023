@@ -11,15 +11,11 @@ const RightSideBar = () => {
   return (
     <div className="bg-black-100 flex-col inline-flex items-start justify-start gap-3 flex-1 p-4 mt-20">
       <div className="flex flex-col w-full">
-        <div className={`text-white flex p-4 rounded-xl cursor-pointer transition-colors duration-400 ${active == "Project" ? "bg-blue-600" : "hover:bg-blue-400"}`} onClick={() => handleClick("Project")}>
-          My Projects
-        </div>
-        <div className={`text-white flex p-4 rounded-xl cursor-pointer transition-colors duration-400 ${active == "Following" ? "bg-blue-600" : "hover:bg-blue-400"}`} onClick={() => handleClick("Following")}>
-          Following
-        </div>
-        <div className={`text-white flex p-4 rounded-xl cursor-pointer transition-colors duration-400 ${active == "NewPost" ? "bg-blue-600" : "hover:bg-blue-400"}`} onClick={() => handleClick("NewPost")}>
-          New Post
-        </div>
+        <a href="/newpost">
+          <div className={`text-blue-500 hover:text-blue-400 flex items-center justify-center p-4 rounded-xl cursor-pointer border-2 border-blue-500 hover:border-blue-400 transition-colors duration-400`}>
+            New Post
+          </div>
+        </a>
       </div>
 
       <div className="flex flex-col w-full">
@@ -27,7 +23,7 @@ const RightSideBar = () => {
           <div className="flex text-white uppercase text-sm font-medium">
             Shorcut
           </div>
-          <div className="w-4 h-4 flex-shrink-0">
+          <div className="w-4 h-4 flex-shrink-0 cursor-pointer hover:opacity-80">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
               <path opacity="0.4" d="M11.7333 0.5H4.26667C1.54311 0.5 0 2.04311 0 4.76667V12.2333C0 14.9498 1.536 16.5 4.26667 16.5H11.7333C14.4569 16.5 16 14.9498 16 12.2333V4.76667C16 2.04311 14.4569 0.5 11.7333 0.5Z" fill="#5577FF"/>
               <path d="M10.6564 9.06667H8.5996V11.1056C8.5996 11.4339 8.33115 11.7 7.99999 11.7C7.66883 11.7 7.40037 11.4339 7.40037 11.1056V9.06667H5.34362C5.03473 9.03496 4.79999 8.77692 4.79999 8.46906C4.79999 8.1612 5.03473 7.90316 5.34362 7.87145H7.39392V5.83893C7.42591 5.53271 7.68621 5.3 7.99676 5.3C8.30731 5.3 8.56762 5.53271 8.5996 5.83893V7.87145H10.6564C10.9652 7.90316 11.2 8.1612 11.2 8.46906C11.2 8.77692 10.9652 9.03496 10.6564 9.06667Z" fill="#5577FF"/>
