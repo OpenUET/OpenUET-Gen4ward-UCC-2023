@@ -9,7 +9,7 @@ const RightSideBar = () => {
   }
 
   return (
-    <div className="bg-black-100 flex-col inline-flex items-start justify-center gap-3 flex-1 p-4 mt-20">
+    <div className="bg-black-100 flex-col inline-flex items-start justify-start gap-3 flex-1 p-4 mt-20">
       <div className="flex flex-col w-full">
         <div className={`text-white flex p-4 rounded-xl cursor-pointer transition-colors duration-400 ${active == "Project" ? "bg-blue-600" : "hover:bg-blue-400"}`} onClick={() => handleClick("Project")}>
           My Projects

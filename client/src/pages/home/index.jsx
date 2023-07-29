@@ -13,7 +13,6 @@ export default function Home() {
       <Layout>
         <ListView></ListView>
       </Layout>
-      <div className="text-lg text-blue-500">Home</div>
     </>
   )
 }
