@@ -72,6 +72,10 @@ const PostSchema = new Schema(
       type: String,
       required: false,
     },
+    subject_id: {
+      type: [String],
+      required: false,
+    },
   },
   { timestamps: true },
 );

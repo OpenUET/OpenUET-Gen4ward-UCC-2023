@@ -1,7 +1,7 @@
 import React from 'react'
 import Profile from '../profile/Profile'
 
-const Post = ({ id, title, projectName, status, logoUrl, coverImgUrl, stars, members, techs, tags = [''] }) => {
+const Post = ({ id, title, projectName, status, logoUrl, coverImgUrl, stars, members, techs, tags }) => {
 	return (
 		<a href={'/posts/' + id} className="w-full">
 			<div className={`bg-[url('${coverImgUrl || '/images/Nachoneko.jpg'}')] bg-cover flex flex-col w-full rounded-xl items-start justify-between`}>
@@ -33,8 +33,8 @@ const Post = ({ id, title, projectName, status, logoUrl, coverImgUrl, stars, mem
 							<div className="flex flex-1 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Members</div>
 							<div className="flex flex-1 items-center justify-start space-x-4">
 								<div className="flex items-center justify-center">
-									{members.slice(0, 3).map(member => (
-										<div className="w-6 h-6 rounded-full overflow-hidden mr-1">
+									{members.slice(0, 3).map((member, index) => (
+										<div key={index} className="w-6 h-6 rounded-full overflow-hidden mr-1">
 											<Profile id={member.id} avatar_url={member.avatar_url} full_name={member.name} />
 										</div>
 									))}
@@ -60,8 +60,8 @@ const Post = ({ id, title, projectName, status, logoUrl, coverImgUrl, stars, mem
 					{/* Project Techs */}
 					<div className="flex flex-1 items-center justify-start space-x-4 ml-8 mb-4">
 						<div className="flex items-center justify-center">
-							{techs?.slice(0, 3).map(tech => (
-								<div className="w-6 h-6 rounded-full overflow-hidden mr-1">
+							{techs?.slice(0, 3).map((tech, index) => (
+								<div key={index} className="w-6 h-6 rounded-full overflow-hidden mr-1">
 									<img src={tech.logoUrl} alt={tech.name} className="w-full h-full object-cover" />
 								</div>
 							))}
@@ -83,8 +83,8 @@ const Post = ({ id, title, projectName, status, logoUrl, coverImgUrl, stars, mem
 					{/* Project tags */}
 					<div className="flex flex-1 items-center justify-start space-x-4 ml-8 mb-8">
 						<div className="flex items-center justify-center">
-							{tags?.slice(0, 3).map(tag => (
-								<div className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] whitespace-nowrap text-white w-auto h-auto rounded-2xl overflow-hidden px-3 py-1 mr-1 bg-transparent border-2 border-white">
+							{tags?.slice(0, 3).map((tag, index) => (
+								<div key={index} className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] whitespace-nowrap text-white w-auto h-auto rounded-2xl overflow-hidden px-3 py-1 mr-1 bg-transparent border-2 border-white">
 									{tag}
 								</div>
 							))}

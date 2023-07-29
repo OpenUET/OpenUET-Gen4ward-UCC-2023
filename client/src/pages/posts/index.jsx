@@ -28,26 +28,26 @@ export default function Posts() {
       <NavBar />
       <div className="max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
 
-        <div className="pt-28 flex justify-end">
+        <div className="pt-28 flex gap-6">
+          <div className="flex-1 relative">
+            <PostDetail
+              title={post.title}
+              projectName={post.projectName}
+              createdAt={post.createdAt}
+              githubLink={post.githubLink}
+              content={post.content}
+              status={post.status}
+            />
+          </div>
 
-          <PostDetail
-            title={post.title}
-            projectName={post.projectName}
-            createdAt={post.createdAt}
-            githubLink={post.githubLink}
-            content={post.content}
-            status={post.status}
-          />
-          <div className="w-[30%] flex flex-col gap-4 mt-4">
+          <div className="w-[30%] flex flex-col gap-4">
             <OwnerInfo />
-
             <div className="relative">
               <MembersInfo />
               {true && (
                 <MembersMenu />
               )}
             </div>
-
             {true && (
               <ListingRequests />
             )}
