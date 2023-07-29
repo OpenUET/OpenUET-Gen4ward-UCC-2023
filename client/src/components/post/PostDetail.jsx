@@ -3,7 +3,7 @@ import './PostDetail.css'
 import { useState } from 'react';
 import { AiOutlineStar } from "react-icons/ai";
 import { AiFillStar } from "react-icons/ai";
-
+import { FaPencilAlt } from "react-icons/fa";
 const PostDetail = () => {
   const [star, setStar] = useState(false);
   const [status, setStatus] = useState("active");
@@ -120,6 +120,10 @@ const PostDetail = () => {
                 <div className="flex w-full">
                     <div className="flex flex-1 mt-8 text-white text-xl font-bold">OpenUET</div>
                     <div className="flex flex-1 items-end justify-end w-full">
+                        <div className="flex items-center justify-center cursor-pointer bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1 mr-2">
+                            <FaPencilAlt className="mr-1"/>
+                            Edit
+                        </div>
                         <div onClick={() => handleClickStar()} className={`${star == true ? "text-yellow-400 border-yellow-400" : ""} flex items-center justify-center cursor-pointer bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1 mr-2`}>
                             {star == true ? (
                                 <AiFillStar className={`mr-1 scale-up-center`}/>
