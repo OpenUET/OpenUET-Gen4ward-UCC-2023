@@ -6,7 +6,7 @@ export default function Logo() {
         alt="Logo"
       /> */}
 
-      <div className="text-lg font-semibold italic">OpenUET</div>
+      <div className="text-lg text-white font-semibold italic">OpenUET</div>
     </a>
   );
 }

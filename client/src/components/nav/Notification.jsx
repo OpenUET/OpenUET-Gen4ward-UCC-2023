@@ -40,13 +40,13 @@ export default function Notification({ session }) {
   return (
     <div className={`flex justify-end flex-shrink-0 relative`}>
       <div ref={menuRef} className="flex flex-row items-center gap-3">
-        <button onClick={() => setMenuOpen(!menuOpen)} className="py-3 px-4 border-[1px] border-neutral-200 flex flex-row items-center gap-2 rounded-full cursor-pointer hover:shadow-md transition">
+        <button onClick={() => setMenuOpen(!menuOpen)} className="py-3 px-4 border-[1px] border-neutral-700 flex flex-row items-center gap-2 rounded-full cursor-pointer hover:shadow-md transition">
           <div className="flex-shrink-0">
             <BiNotification className="w-6 h-6 text-neutral-500" />
           </div>
         </button>
 
-        <dialog open={menuOpen} className="rounded-xl shadow-md w-[50vw] sm:w-[36vw] lg:w-[320px] bg-white overflow-hidden right-0 top-14 text-sm mr-0 p-0 z-10">
+        <dialog open={menuOpen} className="bg-black-50 rounded-xl shadow-md w-[50vw] sm:w-[36vw] lg:w-[320px] overflow-hidden right-0 top-14 text-sm mr-0 p-0 z-10">
           <div onClick={() => setMenuOpen(false)} className="flex flex-col w-full cursor-pointer">
             {notificationList.map((notification, index) => (
               <MenuItem
