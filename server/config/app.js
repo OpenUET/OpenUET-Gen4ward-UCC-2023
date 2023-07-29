@@ -13,4 +13,6 @@ export const appConfig = Object.freeze({
   port: Number(env('APP_PORT', 3333)),
   routePrefix: env('APP_ROUTE_PREFIX'),
   mongoURI: env('MONGO_URI'),
+  githubClientSecret: env('GITHUB_CLIENT_SECRET'),
+  githubClientId: env('GITHUB_CLIENT_ID'),
 });
