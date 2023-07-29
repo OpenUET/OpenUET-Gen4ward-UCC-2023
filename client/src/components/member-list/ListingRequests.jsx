@@ -26,13 +26,13 @@ const ListingRequests = ({
     return null
 
   return (
-    <div className="bg-white rounded-xl border-[1px] border-neutral-200 overflow-hidden">
+    <div className="rounded-xl border-[1px] border-neutral-700 overflow-hidden">
       <div className="flex flex-col gap-4 p-4">
-        <div className="text-xl font-semibold">Yêu cầu</div>
+        <div className="text-xl font-semibold text-white">Yêu cầu</div>
 
         {requests?.map((request) => (
           <div key={request.id} className="flex gap-2 flex-col items-start sm:flex-row sm:items-center md:flex-col md:items-start justify-between lg:flex-row lg:items-center">
-            <span className="flex gap-2 items-center">
+            <span className="flex gap-2 items-center text-neutral-200">
               <Profile
                 avatar_url={request?.avatar_url}
                 full_name={request?.full_name}

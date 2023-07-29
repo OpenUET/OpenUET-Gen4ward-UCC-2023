@@ -13,8 +13,8 @@ export default function MembersInfo({
   // members,
 }) {
   return (
-    <div className="bg-white rounded-xl border-[1px] border-neutral-200 flex flex-col gap-3 p-4">
-      <div className="text-xl font-semibold">Team members</div>
+    <div className="rounded-xl border-[1px] border-neutral-700 flex flex-col gap-3 p-4">
+      <div className="text-xl font-semibold text-white">Team member</div>
 
       {members?.map((member) => (
         <div key={member.id} className="flex items-center h-full">
@@ -24,11 +24,11 @@ export default function MembersInfo({
               full_name={member?.full_name}
               id={member?.id}
             />
-            <span className="text-neutral-600">{member?.full_name}</span>
+            <span className="text-neutral-200">{member?.full_name}</span>
           </div>
 
           <div className="flex-1 h-full pl-4 border-l-[1px]">
-            <p className="text-neutral-600 whitespace-pre-line text-sm">{member?.description}</p>
+            <p className="text-neutral-200 whitespace-pre-line text-sm">{member?.description}</p>
           </div>
         </div>
       ))}

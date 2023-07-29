@@ -21,11 +21,11 @@ export default function MembersMenu() {
 
   return (
     <div ref={menuRef}>
-      <button onClick={() => setMenuOpen(!menuOpen)} className="absolute top-3 right-3 p-2 rounded-full hover:bg-neutral-100 transition">
-        <BsThreeDots size={20} />
+      <button onClick={() => setMenuOpen(!menuOpen)} className="absolute top-3 right-3 p-2 rounded-full hover:bg-neutral-700 transition">
+        <BsThreeDots size={20} className="text-neutral-200" />
       </button>
 
-      <dialog open={menuOpen} className="rounded-xl shadow-md w-56 bg-white right-0 top-14 text-sm mr-0 p-0 z-[5]">
+      <dialog open={menuOpen} className="bg-black-50 rounded-xl shadow-md w-56 right-0 top-14 text-sm mr-0 p-0 z-[5] overflow-hidden">
         <div onClick={() => setMenuOpen(false)} className="flex flex-col w-full cursor-pointer">
           <MenuItem
             label="Add team member(s)"
