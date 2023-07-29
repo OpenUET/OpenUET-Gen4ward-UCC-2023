@@ -1,5 +1,4 @@
 import React from 'react'
-import RightSideBar from './RightSideBar'
 import LeftSideBar from './LeftSIdeBar'
 
 const Layout = ({ children }) => {
