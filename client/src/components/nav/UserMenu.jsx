@@ -1,7 +1,3 @@
-// import handleCloseDialog from '@/utils/handleCloseDialog';
-// import { createQueryString, deleteQueryString } from '@/utils/queryString';
-// import dynamic from 'next/dynamic';
-// import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
 import MenuItem from '../MenuItem'
@@ -10,24 +6,18 @@ import AuthPopup from './AuthPopup'
 import { toast } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { AUTH_ACTIONS, selectUser } from '../../redux/slices/authSlice'
-// import EditProfilePopup from '../profile/EditProfilePopup';
-// const NotificationPopup = dynamic(() => import('../notification/NotificationPopup'), { ssr: false })
 
 export default function UserMenu() {
   const menuRef = useRef(null)
   const [menuOpen, setMenuOpen] = useState(false)
-
-  const authModalRef2 = useRef(null)
-  const profileModalRef = useRef(null)
-  const dispatch = useDispatch()
-
+ 
   const [activeTab, setActiveTab] = useState('') // login, signup, verify, set-password, edit-profile-...
 
+  const dispatch = useDispatch()
   const { isLoggedIn, userInfo } = useSelector(selectUser)
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      // handleCloseDialog(e, authModalRef1.current)
       if (menuRef.current && !menuRef.current.contains(e.target)) {
         setMenuOpen(false)
       }
@@ -44,7 +34,7 @@ export default function UserMenu() {
   }
 
   const handleHelp = () => {
-    toast('Chức năng đang được phát triển', { icon: '🚧' })
+
   }
 
   return (
@@ -74,9 +64,8 @@ export default function UserMenu() {
                 <MenuItem
                   label='Thông tin cá nhân'
                   onClick={() => {
-                    // popup
+                    // change route
                   }}
-                  light
                 />
                 <MenuItem label='Trợ giúp' onClick={handleHelp} light />
                 <MenuItem label='Đăng xuất' onClick={handleSignOut} light />
@@ -101,10 +90,10 @@ export default function UserMenu() {
         </dialog>
       </div>
 
-      <AuthPopup activeTab={activeTab} setActiveTab={setActiveTab} />
-
-      {/* <EditProfilePopup
-      /> */}
+      <AuthPopup
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
     </div>
   )
 }
