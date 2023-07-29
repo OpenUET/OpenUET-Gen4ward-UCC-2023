@@ -8,7 +8,9 @@ const router = createBrowserRouter(
       <Route exact path='/' element={
       <>
       <div className="bg-black-100 w-full h-screen">
-        <Layout />
+        <Layout>
+
+        </Layout>
       </div>
       </>
     } />
