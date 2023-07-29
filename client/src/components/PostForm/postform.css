@@ -1,0 +1,33 @@
+.ql-editor.ql-blank::before {
+    color: white;
+  }
+  .richtextWrap {
+    position: "relative";
+   /* fix the toolbar position */
+}
+.richtextWrap :global(.ql-editor) {
+   /* fix the default theme color */
+}
+.richtextWrap :global(.ql-editor) blockquote, .richtextWrap :global(.ql-editor) div, .richtextWrap :global(.ql-editor) h2, .richtextWrap :global(.ql-editor) h3, .richtextWrap :global(.ql-editor) h4, .richtextWrap :global(.ql-editor) ol, .richtextWrap :global(.ql-editor) p, .richtextWrap :global(.ql-editor) ul {
+    color: "[theme:black, default:black]";
+}
+
+.ql-editor {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    line-height: 30px;
+    color: lightgray;
+  }
+  
+  .ql-bubble .ql-editor pre {
+    padding: 24px;
+    border-radius: 10px;
+  }
+  
+  .ql-bubble .ql-editor pre.ql-syntax {
+    color: #ab9bab;
+    background: #1b181b;
+  }
+  
+
