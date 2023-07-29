@@ -1,4 +1,4 @@
-const Avatar = ({ src, size = 30 }) => {
+const Avatar = ({ src, size = 32 }) => {
   return ( 
     <img 
       className="rounded-full aspect-square object-cover" 
