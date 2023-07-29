@@ -1,10 +1,9 @@
 import React from 'react'
-import RightSideBar from './RightSideBar'
 
 const PostDetail = () => {
   return (
-    <div className="bg-black-100 inline-flex items-start justify-center gap-3 flex-1 p-4 mt-32 w-full">
-        <div className="flex flex-col w-3/5">
+    <div className="bg-black-100 inline-flex items-start justify-center gap-3 flex-1 p-4 w-full">
+        <div className="flex flex-col">
             {/* Project cover */}
             <div className="flex flex-col w-full h-[12.375rem] bg-black-50 rounded-xl items-end justify-between mb-6">
                 <div className="flex flex-1"></div>
@@ -101,13 +100,13 @@ const PostDetail = () => {
             </div>
 
             {/* Project detail */}
-            <div className="flex flex-col border-t-2 border-white mt-8">
+            <div className="flex flex-col border-t-[1px] border-neutral-700 mt-8">
                 <div className="flex w-full">
                     <div className="flex flex-1 mt-8 text-white text-xl font-bold">OpenUET</div>
                     <div className="flex flex-1 items-end justify-end w-full">
-                        <div className="flex bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1 mr-2">Star</div>
-                        <div className="flex bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1 mr-2">Fork</div>
-                        <div className="flex bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1">Visit Github</div>
+                        <div className="flex cursor-pointer bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1 mr-2">Star</div>
+                        <div className="flex cursor-pointer bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1 mr-2">Fork</div>
+                        <div className="flex cursor-pointer bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1">Visit Github</div>
                     </div>
                 </div>
                 <div className="flex w-full mt-8 text-white">
@@ -119,8 +118,6 @@ Quisque a magna pretium, interdum odio eget, faucibus orci. Etiam erat lectus, t
                 </div>
             </div>
         </div>
-
-        <RightSideBar />
     </div>
   )
 }

@@ -10,10 +10,9 @@ export default function Home() {
     <>
       <Toaster />
       <NavBar />
-      <PostDetail />
-      {/* <Layout>
+      <Layout>
         <ListView/>
-      </Layout> */}
+      </Layout>
     </>
   )
 }
