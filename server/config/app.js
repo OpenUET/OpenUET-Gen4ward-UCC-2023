@@ -15,4 +15,5 @@ export const appConfig = Object.freeze({
   mongoURI: env('MONGO_URI'),
   githubClientSecret: env('GITHUB_CLIENT_SECRET'),
   githubClientId: env('GITHUB_CLIENT_ID'),
+  jwtPrivateKey: env('JWT_PRIVATE_KEY')
 });

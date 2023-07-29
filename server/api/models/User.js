@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { ROLES } from '../constants/types';
+import { ROLES } from '../constants/types.js';
 
 const UserSchema = new Schema(
   {
@@ -9,7 +9,7 @@ const UserSchema = new Schema(
     },
     email: {
       type: String,
-      required: true,
+      required: false,
     },
     githubId: {
       type: String,
