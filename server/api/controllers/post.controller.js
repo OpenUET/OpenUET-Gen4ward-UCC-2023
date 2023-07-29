@@ -12,8 +12,18 @@ export const getPostById = async (req, res) => {
 };
 
 export const createPost = async (req, res) => {
-  const { data } = req.body;
-  const resp = await postService.createPost(data);
+  const { data, userId: owner } = req.body;
+  const { title, projectName, content, tags, forkedProjectId, githubLink } = data;
+
+  const resp = await postService.createPost({
+    owner,
+    title,
+    projectName,
+    content,
+    tags,
+    forkedProjectId,
+    githubLink,
+  });
   return res.status(201).json(resp);
 };
 

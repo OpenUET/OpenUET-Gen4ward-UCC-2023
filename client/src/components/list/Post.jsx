@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Post = ({ id }) => {
+const Post = ({ id, title, projectName }) => {
 	return (
 		<a href={'/posts/' + id} className="w-full">
 			<div className="bg-[url('/images/Nachoneko.jpg')] bg-cover flex flex-col w-full h-[12.375rem] rounded-xl items-start justify-between">
@@ -13,8 +13,8 @@ const Post = ({ id }) => {
 							</div>
 						</div>
 						<div className="flex flex-col items-start">
-							<div className="flex flex-1 text-2xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">OpenUET</div>
-							<div className="flex flex-1 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Project Title</div>
+							<div className="flex flex-1 text-2xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">{projectName}</div>
+							<div className="flex flex-1 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">{title}</div>
 						</div>
 					</div>
 
