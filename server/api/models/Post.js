@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { POST_STATUS } from '../constants/types';
+import { POST_STATUS } from '../constants/types.js';
 
 const PostSchema = new Schema(
   {
@@ -25,21 +25,15 @@ const PostSchema = new Schema(
       ref: 'User',
       default: [],
     },
-    votes: {
-      up: {
-        type: [Schema.Types.ObjectId],
-        ref: 'User',
-        default: [],
-      },
-      down: {
-        type: [Schema.Types.ObjectId],
-        ref: 'User',
-        default: [],
-      },
+    stars: {
+      type: [Schema.Types.ObjectId],
+      ref: 'User',
+      default: [],
     },
     comments: {
       type: [Schema.Types.ObjectId],
       ref: 'Comment',
+      default: [],
     },
     tags: {
       type: [String],
@@ -53,6 +47,7 @@ const PostSchema = new Schema(
     status: {
       type: String,
       enum: [...Object.values(POST_STATUS)],
+      default: POST_STATUS.ACTIVE,
     },
     githubLink: {
       type: String,

@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { NOTI_TYPES } from '../constants/types';
+import { NOTI_TYPES } from '../constants/types.js';
 
 const NotiBodySchema = new Schema({
   senderId: {
