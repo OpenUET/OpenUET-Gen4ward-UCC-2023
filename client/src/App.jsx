@@ -1,15 +1,22 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import PostForm from './components/PostForm'
-
+import Home from './pages/home'
+import Posts from './pages/posts'
+import NewPost from './pages/newpost'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route exact path='/' element={<PostForm/>} />
+      <Route exact path='/' element={<Home />} />
+      <Route exact path='/posts/:id' element={<Posts />} />
+      <Route exact path='/newpost' element={<NewPost />} />
     </Route>
   )
 )
 
 export default function App() {
-  return <RouterProvider router={router} />
+  return (
+    <div className='bg-black-100 min-h-screen'>
+      <RouterProvider router={router} />
+    </div>
+  )
 }
