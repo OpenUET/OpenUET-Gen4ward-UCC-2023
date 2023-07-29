@@ -12,11 +12,12 @@ export const findUserOrAddNew = async (githubId, fullname, avatarUrl) => {
       isNew: false,
     };
 
-  const newUser = await User.save({
+  const newUser = new User({
     githubId,
     fullname,
     avatarUrl,
-  });
+  })
+  newUser.save();
   return { user: newUser, isNew: true };
 };
 

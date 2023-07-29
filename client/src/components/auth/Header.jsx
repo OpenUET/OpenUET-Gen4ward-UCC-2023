@@ -7,11 +7,11 @@ export default function Header({
 }) {
   return (
     <div className="mb-10">
-      <button onClick={onBack} className="absolute top-6 text-2xl">🡠</button>
+      <button onClick={onBack} className="absolute top-6 text-2xl text-white">🡠</button>
 
       <div className="flex justify-center">
         {/* Favicon here */}
-        <div className="text-4xl font-bold italic pt-8 pb-4">OpenUET</div>
+        <div className="text-4xl font-bold italic pt-8 pb-4 text-white">OpenUET</div>
       </div>
       <h2 className="w-full mt-6 text-center text-3xl font-extrabold text-gray-900">
         {heading}

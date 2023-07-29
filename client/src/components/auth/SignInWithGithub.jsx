@@ -7,7 +7,7 @@ export default function SignInWithGithub() {
     <button
       onClick={handleSignInWithGithub}
       type='button'
-      className='text-white bg-[#24292e] hover:bg-[#1f2428] focus:ring-[#1f2428]/50 text-center items-center dark:focus:ring-[#1f2428]/55 mr-2 mb-2 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 mt-5'
+      className='border border-white text-white bg-[#24292e] hover:bg-[#1f2428] focus:ring-[#1f2428]/50 text-center items-center dark:focus:ring-[#1f2428]/55 mr-2 mb-2 group relative w-full flex justify-center py-2 px-4 border-transparent text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 mt-5'
     >
       <svg
         className='w-4 h-4 mr-2 -ml-1'

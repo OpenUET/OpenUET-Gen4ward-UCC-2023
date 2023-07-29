@@ -40,9 +40,9 @@ export default function Notification({ session }) {
   return (
     <div className={`flex justify-end flex-shrink-0 relative`}>
       <div ref={menuRef} className="flex flex-row items-center gap-3">
-        <button onClick={() => setMenuOpen(!menuOpen)} className="py-3 px-4 border-[1px] border-neutral-700 flex flex-row items-center gap-2 rounded-full cursor-pointer hover:shadow-md transition">
+        <button onClick={() => setMenuOpen(!menuOpen)} className="py-3 px-4 border border-neutral-700 flex flex-row items-center gap-2 rounded-full cursor-pointer hover:shadow-md transition">
           <div className="flex-shrink-0">
-            <BiNotification className="w-6 h-6 text-neutral-500" />
+            <BiNotification className="w-6 h-6 text-neutral-500 flex-shrink-0" />
           </div>
         </button>
 

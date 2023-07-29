@@ -3,8 +3,8 @@ import React from 'react'
 const Post = ({ id }) => {
 	return (
 		<a href={'/posts/' + id} className="w-full">
-			<div className="flex flex-col w-full h-[12.375rem] bg-black-50 rounded-xl items-start justify-between">
-				<div className="flex items-start justify-between w-full">
+			<div className="flex flex-col w-full bg-black-50 rounded-xl items-start justify-between">
+				<div className="flex items-start justify-between w-full flex-wrap">
 					{/* Project name */}
 					<div className="flex flex-1 items-center justify-start space-x-4 ml-8 mt-8">
 						<div className="flex items-center justify-center">
@@ -19,7 +19,7 @@ const Post = ({ id }) => {
 					</div>
 
 					{/* Project status */}
-					<div className="flex flex-1 justify-center mr-8 mt-8">
+					<div className="flex flex-1 justify-center ml-8 mr-0 md:mr-8 md:ml-0 mt-8">
 						<div className="flex flex-col items-start mr-12">
 							<div className="flex flex-1 text-white uppercase">Star</div>
 							<div className="flex flex-1 text-white">100</div>

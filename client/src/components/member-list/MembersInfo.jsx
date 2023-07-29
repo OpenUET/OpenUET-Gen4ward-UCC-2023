@@ -13,7 +13,7 @@ export default function MembersInfo({
   // members,
 }) {
   return (
-    <div className="rounded-xl border-[1px] border-neutral-700 flex flex-col gap-3 p-4">
+    <div className="rounded-xl border border-neutral-700 flex flex-col gap-3 p-4">
       <div className="text-xl font-semibold text-white">Team member</div>
 
       {members?.map((member) => (
