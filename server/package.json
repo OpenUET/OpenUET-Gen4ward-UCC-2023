@@ -1,0 +1,8 @@
+{
+  "name": "OpenUET",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/datleviet/OpenUET.git",
+  "author": "levietdat <69759053+dat-roy@users.noreply.github.com>",
+  "license": "MIT"
+}
