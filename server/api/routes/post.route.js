@@ -13,6 +13,7 @@ router.get('/owner/:id', catchAsync(controller.getPostsByUserId));
 router.post('/', catchAsync(controller.createPost));
 
 router.patch('/:id', catchAsync(controller.updatePostById));
+router.patch('/:id/star', catchAsync(controller.starPostById));
 
 router.delete('/:id', catchAsync(controller.deletePostById));
 
