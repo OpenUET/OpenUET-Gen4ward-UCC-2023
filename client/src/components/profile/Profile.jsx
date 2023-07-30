@@ -41,6 +41,7 @@ const Profile = ({
 
   const handleClick = (e) => {
     e.preventDefault();
+    console.log(id)
     navigate(`/profile/${id}`);
   }
 
@@ -86,7 +87,7 @@ const Profile = ({
 
             <div className="whitespace-pre-line text-sm">{profile?.contact}</div>
 
-            <div className="whitespace-pre-line text-sm">{profile?.description}</div>
+            <div className="whitespace-pre-line text-sm">{profile?.description || "Lập trình viên backend"}</div>
           </div>
         </div>
       )}
