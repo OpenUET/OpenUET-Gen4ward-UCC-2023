@@ -26,6 +26,7 @@ const ListView = () => {
           members={post.members}
           techs={post.techs}
           tags={post.tags}
+          owner={post.owner}
         />
       ))}
     </div>
