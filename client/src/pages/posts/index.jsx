@@ -38,6 +38,9 @@ export default function Posts() {
               githubLink={post.githubLink}
               content={post.content}
               status={post.status}
+              logoUrl={post.logo_url}
+              stars={post.stars}
+              tags={post.tags}
             />
           </div>
 

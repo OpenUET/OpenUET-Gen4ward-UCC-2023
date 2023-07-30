@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TextareaAutosize from 'react-textarea-autosize'
 import { faC, faCamera, faCode, faFlask, faGem, faHashtag, faMicrochip, faPen, faSchool, faShareNodes } from '@fortawesome/free-solid-svg-icons'
-import { faReact, faJs, faHtml5, faGithub, faJava, faPhp, faPython, faLaravel, faSwift, faAngular } from '@fortawesome/free-brands-svg-icons'
+import { faReact, faJs, faHtml5, faGithub, faJava, faPhp, faPython, faLaravel, faSwift, faAngular, faCss3 } from '@fortawesome/free-brands-svg-icons'
 import { useRef, useState } from 'react'
 import chroma from 'chroma-js'
 import CreatableSelect from 'react-select/creatable'
@@ -16,6 +16,7 @@ import './postform.css'
 import { formats, modules, subjects, tagsStyles, techStyles } from '../../utils/constanceValue'
 import { uploadImage } from '../../utils/uploadImage'
 import image from '../../assets'
+import { useNavigate } from 'react-router-dom'
 
 const tech = [
   { value: 'reactjs', label: 'ReactJs', icon: faReact, color: 'rgb(14, 165, 233)' },
@@ -29,7 +30,8 @@ const tech = [
   { value: 'lavarel', label: 'Lavarel', icon: faLaravel, color: 'red' },
   { value: 'swift', label: 'SwiftUI', icon: faSwift, color: 'orange' },
   { value: 'angular', label: 'Angular', icon: faAngular, color: 'red' },
-  { value: 'kot', label: 'Kotlin', icon: faCode, color: 'purple' }
+  { value: 'kot', label: 'Kotlin', icon: faCode, color: 'purple' },
+  { value: 'css', label: 'CSS', icon: faCss3, color: 'blue' },
 ]
 const colourOptions = [
   { value: 'ocean', label: 'Ocean', color: '#00B8D9' },
@@ -82,7 +84,7 @@ function PostForm({ update }) {
   const formatCreateLabel = (inputValue) => `#${inputValue}`
   const socialLink = useRef()
   const githubLink = useRef()
-
+  const navigate = useNavigate()
   const handleTagsChange = (newValue, actionMeta) => {
     if (actionMeta.action === 'create-option') {
       const newOption = {
@@ -132,7 +134,7 @@ function PostForm({ update }) {
       setTechOptions(newValue)
     }
   }
-
+ 
   const validateAll = () => {
     const dataNeedValid = {
       pname: pname.current.value !== '',
@@ -146,13 +148,19 @@ function PostForm({ update }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (validateAll()) {
-      console.log('okay')
-
-      const logoFile = await uploadImage(logo)
-      const logoUrl = logoFile.secure_url
-
-      const coverImgFile = await uploadImage(bg)
-      const coverImgUrl = coverImgFile.secure_url
+      
+      const logoUrl = ''
+      if(logo){
+        const logoFile = await uploadImage(logo)
+        logoUrl = logoFile.secure_url
+      }
+      
+      const coverImgUrl = ''
+      if(bg){
+        const coverImgFile = await uploadImage(bg)
+        coverImgUrl = coverImgFile.secure_url
+      }
+     
 
       const data = {
         projectName: pname.current.value,
@@ -163,10 +171,10 @@ function PostForm({ update }) {
         cover_img_url: coverImgUrl,
         status: status,
         subject_id: subject.map((s) => s.id),
-        techs: techOptions.map((t) => t.value),
-        tags: tagOptions.map((t) => t.value),
+        techs: techOptions,
+        tags: tagOptions.map((tag) => tag.label),
         // socialLink: socialLink.current.value,
-        githubLink: githubLink.current.value
+        githubLink: githubLink.current.value,
       }
 
       // Todo: change backend url
@@ -174,14 +182,11 @@ function PostForm({ update }) {
         data: data,
         userId: "64c4d435f70d4d57567f6877"
       }).then((res) => {
-        console.log(res)
+        console.log(res.data._id)
+         navigate(`/posts/${res.data._id}`)
       })
-
-      console.log(data)
       return
     }
-
-    console.log('missing field')
   }
 
   const filterOption = (option, inputValue) => {
