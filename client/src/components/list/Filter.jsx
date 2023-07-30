@@ -2,14 +2,11 @@ import React from 'react'
 import { FaFilter } from "react-icons/fa";
 import { FaFilterCircleXmark } from "react-icons/fa6";
 import { useEffect, useRef, useState } from 'react'
-import MenuItem from '../MenuItem';
 
 const Filter = () => {
   const menuRef = useRef(null)
   const [menuOpen, setMenuOpen] = useState(false)
  
-  const [activeTab, setActiveTab] = useState('') // login, signup, verify, set-password, edit-profile-...
-
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
