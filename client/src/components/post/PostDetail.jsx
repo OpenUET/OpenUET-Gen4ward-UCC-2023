@@ -13,16 +13,11 @@ const PostDetail = ({
   title,
   projectName,
   status,
-  content,
   logoUrl,
   coverImgUrl,
   stars,
-  members,
-  techs,
   tags,
-  owner,
-  createdAt,
-  githubLink
+  createdAt
 }) => {
   const [star, setStar] = useState(false)
   // const [status, setStatus] = useState("active");
