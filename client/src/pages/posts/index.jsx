@@ -11,7 +11,7 @@ import { useLocation } from 'react-router-dom';
 
 export default function Posts() {
   const location = useLocation();
-  const [post, setPost] = useState([])
+  const [post, setPost] = useState({})
 
   useEffect(() => {
     const id = location.pathname.split('/')[2];
@@ -19,7 +19,9 @@ export default function Posts() {
     fetch('http://127.0.0.1:3333/api/posts/' + id)
       .then(res => res.json())
       // .then(data => console.log(data))
-      .then(data => setPost(data))
+      .then(data => {
+        setPost(data)
+      })
   }, [])
 
   return (
@@ -27,7 +29,6 @@ export default function Posts() {
       <Toaster />
       <NavBar />
       <div className="max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
-
         <div className="pt-28 flex gap-6">
           <div className="flex-1 relative">
             <PostDetail

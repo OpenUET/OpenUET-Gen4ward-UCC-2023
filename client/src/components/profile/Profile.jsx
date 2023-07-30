@@ -28,14 +28,7 @@ const Profile = ({
 
   useEffect(() => {
     if (!profile && isOpen) {
-      // supabase
-      //   .from('profiles')
-      //   .select('year_of_birth, is_male, contact, description')
-      //   .eq('id', id)
-      //   .then(({ data, error }) => {
-      //     if (error) throw error;
-      //     if (data) setProfile(data[0]);
-      //   })
+      // Todo: fetch profile
     }
   }, [isOpen])
 

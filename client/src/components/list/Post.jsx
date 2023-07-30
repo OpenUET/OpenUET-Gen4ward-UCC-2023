@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Profile from '../profile/Profile'
 
 const Post = ({ id, title, projectName, status, logoUrl, coverImgUrl, stars, members, techs, tags, owner }) => {
 	return (
-		<a href={'/posts/' + id} className="w-full">
+		<a href={'/posts/' + id}>
 			<div className={`bg-[url('${coverImgUrl || '/images/Nachoneko.jpg'}')] bg-cover flex flex-col w-full rounded-xl items-start justify-between`}>
 				<div className="flex items-start justify-between w-full flex-col md:flex-row">
 					{/* Project name */}
@@ -56,7 +56,7 @@ const Post = ({ id, title, projectName, status, logoUrl, coverImgUrl, stars, mem
 						<div className="flex items-center justify-center">
 							{techs?.slice(0, 3).map((tech, index) => (
 								<div key={index} className="w-6 h-6 rounded-full overflow-hidden mr-1">
-									<img src={tech.logoUrl} alt={tech.name} className="w-full h-full object-cover" />
+									<img src={''} alt={tech} className="w-full h-full object-cover" />
 								</div>
 							))}
 							<div className="w-6 h-6 rounded-full overflow-hidden mr-1">
