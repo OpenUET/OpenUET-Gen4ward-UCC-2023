@@ -44,6 +44,10 @@ const PostSchema = new Schema(
       ref: 'Post',
       default: null,
     },
+    techs: {
+      type: [Object],
+      default: [],
+    },
     status: {
       type: String,
       enum: [...Object.values(POST_STATUS)],
