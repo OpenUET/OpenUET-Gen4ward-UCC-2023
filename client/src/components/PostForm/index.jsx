@@ -14,6 +14,7 @@ import 'react-quill/dist/quill.snow.css'
 import 'react-quill/dist/quill.snow.css'
 import './postform.css'
 import { formats, modules, subjects, tagsStyles, techStyles } from '../../utils/constanceValue'
+import { uploadImage } from '../../utils/uploadImage'
 
 const tech = [
   { value: 'reactjs', label: 'ReactJs', icon: faReact, color: 'rgb(14, 165, 233)' },
@@ -132,19 +133,24 @@ function PostForm({ update }) {
     setValidated(dataNeedValid)
     return Object.values(dataNeedValid).every((d) => d === true)
   }
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (validateAll()) {
       console.log('okay')
 
-      // Todo: upload image to cloudinary
+      const logoFile = await uploadImage(logo)
+      const logoUrl = logoFile.secure_url
+
+      const coverImgFile = await uploadImage(bg)
+      const coverImgUrl = coverImgFile.secure_url
+
       const data = {
         projectName: pname.current.value,
         title: title.current.value,
         description: description,
         content: value,
-        // logo_url: logo,
-        // cover_img_url: bg,
+        logo_url: logoUrl,
+        cover_img_url: coverImgUrl,
         status: status,
         subject_id: subject.map((s) => s.id),
         techs: techOptions.map((t) => t.value),
@@ -188,6 +194,7 @@ function PostForm({ update }) {
         <div
           className={`flex flex-col w-full h-[250px] rounded-xl object-contain items-end justify-between mb-6 relative`}
         >
+          {/* Todo: Add background placeholder */}
           <img
             src={bg?.preview || ''}
             className='absolute top-0 h-full right-[50%] translate-x-1/2 object-center object-contain'
@@ -212,7 +219,7 @@ function PostForm({ update }) {
                 </label>
                 <input accept='image/*' type='file' id='logo' onChange={handleLogo} className='hidden' />
                 <div className='w-16 h-16 rounded-full overflow-hidden '>
-                  <img src={logo?.preview || ''} alt={''} className='w-full outline-none h-full object-cover' />
+                  <img src={logo?.preview || 'https://cdn4.iconfinder.com/data/icons/seo-outline-422/50/innovation-gear-lightbulb-idea-technology-512.png'} alt={''} className='w-full outline-none h-full object-cover' />
                 </div>
               </div>
               <div className='flex flex-col items-start w-1/2'>

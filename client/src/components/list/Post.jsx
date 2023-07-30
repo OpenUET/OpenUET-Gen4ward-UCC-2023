@@ -1,7 +1,7 @@
 import React from 'react'
 import Profile from '../profile/Profile'
 
-const Post = ({ id, title, projectName, status, logoUrl, coverImgUrl, stars, members, techs, tags }) => {
+const Post = ({ id, title, projectName, status, logoUrl, coverImgUrl, stars, members, techs, tags, owner }) => {
 	return (
 		<a href={'/posts/' + id} className="w-full">
 			<div className={`bg-[url('${coverImgUrl || '/images/Nachoneko.jpg'}')] bg-cover flex flex-col w-full rounded-xl items-start justify-between`}>
@@ -10,7 +10,7 @@ const Post = ({ id, title, projectName, status, logoUrl, coverImgUrl, stars, mem
 					<div className="flex flex-1 items-center justify-start space-x-4 ml-8 mt-8 flex-shrink-0">
 						<div className="flex items-center justify-center">
 							<div className="w-16 h-16 rounded-full overflow-hidden">
-								<img src={logoUrl} alt={"Project Logo"} className="w-full h-full object-cover" />
+								<img src={logoUrl || "https://cdn4.iconfinder.com/data/icons/seo-outline-422/50/innovation-gear-lightbulb-idea-technology-512.png"} alt={"Project Logo"} className="w-full h-full object-cover" />
 							</div>
 						</div>
 						<div className="flex flex-col items-start">
@@ -33,20 +33,14 @@ const Post = ({ id, title, projectName, status, logoUrl, coverImgUrl, stars, mem
 							<div className="flex flex-1 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Members</div>
 							<div className="flex flex-1 items-center justify-start space-x-4">
 								<div className="flex items-center justify-center">
+									<div className="w-6 h-6 rounded-full overflow-hidden mr-1">
+										<Profile id={owner} avatar_url={''} full_name={''} />
+									</div>
 									{members.slice(0, 3).map((member, index) => (
 										<div key={index} className="w-6 h-6 rounded-full overflow-hidden mr-1">
 											<Profile id={member.id} avatar_url={member.avatar_url} full_name={member.name} />
 										</div>
 									))}
-									<div className="w-6 h-6 rounded-full overflow-hidden mr-1">
-										<Profile />
-									</div>
-									<div className="w-6 h-6 rounded-full overflow-hidden mr-1">
-										<Profile />
-									</div>
-									<div className="w-6 h-6 rounded-full overflow-hidden mr-1">
-										<Profile />
-									</div>
 									{members.length > 3 && (
 										<div className="overflow-hidden text-white text-right drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">+ {members.length - 3}</div>
 									)}
