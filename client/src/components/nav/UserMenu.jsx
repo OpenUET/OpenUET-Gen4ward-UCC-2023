@@ -6,8 +6,10 @@ import AuthPopup from './AuthPopup'
 import { toast } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { AUTH_ACTIONS, selectUser } from '../../redux/slices/authSlice'
+import { useNavigate } from 'react-router-dom'
 
 export default function UserMenu() {
+  const navigate = useNavigate();
   const menuRef = useRef(null)
   const [menuOpen, setMenuOpen] = useState(false)
  
@@ -64,6 +66,7 @@ export default function UserMenu() {
                   label='Profile'
                   onClick={() => {
                     // change route
+                    navigate(`/profile/${userInfo._id}`);
                   }}
                   light
                 />

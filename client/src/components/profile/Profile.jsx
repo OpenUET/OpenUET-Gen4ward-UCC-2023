@@ -41,6 +41,7 @@ const Profile = ({
 
   const handleClick = (e) => {
     e.preventDefault();
+    console.log(id)
     navigate(`/profile/${id}`);
   }
 
