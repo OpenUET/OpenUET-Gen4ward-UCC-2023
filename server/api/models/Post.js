@@ -64,6 +64,18 @@ const PostSchema = new Schema(
         type: String,
       },
     },
+    cover_img_url: {
+      type: String,
+      required: false,
+    },
+    logo_url: {
+      type: String,
+      required: false,
+    },
+    subject_id: {
+      type: [String],
+      required: false,
+    },
   },
   { timestamps: true },
 );

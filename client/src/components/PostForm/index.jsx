@@ -5,6 +5,7 @@ import { faReact, faJs, faHtml5, faGithub } from '@fortawesome/free-brands-svg-i
 import { useRef, useState } from 'react'
 import chroma from 'chroma-js'
 import CreatableSelect from 'react-select/creatable'
+import axios from 'axios'
 
 import Select, { components } from 'react-select'
 import ReactQuill from 'react-quill'
@@ -58,7 +59,7 @@ function PostForm({ update }) {
   const [description, setDescription] = useState('')
   const [techOptions, setTechOptions] = useState([])
   const [tagOptions, setTagOptions] = useState([])
-  const [status, setStatus] = useState('active')
+  const [status, setStatus] = useState('ACTIVE')
   // const subject = useRef()
   const [subject, setSubject] = useState([])
   const pname = useRef()
@@ -135,6 +136,32 @@ function PostForm({ update }) {
     e.preventDefault()
     if (validateAll()) {
       console.log('okay')
+
+      // Todo: upload image to cloudinary
+      const data = {
+        projectName: pname.current.value,
+        title: title.current.value,
+        description: description,
+        content: value,
+        // logo_url: logo,
+        // cover_img_url: bg,
+        status: status,
+        subject_id: subject.map((s) => s.id),
+        techs: techOptions.map((t) => t.value),
+        tags: tagOptions.map((t) => t.value),
+        // socialLink: socialLink.current.value,
+        githubLink: githubLink.current.value
+      }
+
+      axios.post('http://127.0.0.1:3333/api/posts', {
+        data: data,
+        userId: "64c4d435f70d4d57567f6877"
+      }).then((res) => {
+        console.log(res)
+      })
+
+      console.log(data)
+      return
     }
 
     console.log('missing field')
@@ -142,7 +169,7 @@ function PostForm({ update }) {
 
   const filterOption = (option, inputValue) => {
     // Filter options based on both id and name
-    const {data} = option
+    const { data } = option
     return (
       data.id.toLowerCase().includes(inputValue.toLowerCase()) ||
       data.name.toLowerCase().includes(inputValue.toLowerCase())
@@ -155,7 +182,7 @@ function PostForm({ update }) {
     </div>
   )
   return (
-    <div className='bg-black-100 inline-flex items-start justify-center gap-3 flex-1 p-4 w-full mb-20'>
+    <div className='bg-black-100 inline-flex items-start justify-center gap-3 flex-1 w-full mb-20'>
       <div className='flex flex-col w-full text-white'>
         {/* Project cover */}
         <div
@@ -163,7 +190,7 @@ function PostForm({ update }) {
         >
           <img
             src={bg?.preview || ''}
-            className='absolute top-0 h-full right-[50%]  translate-x-1/2 object-center object-contain'
+            className='absolute top-0 h-full right-[50%] translate-x-1/2 object-center object-contain'
           />
           <label
             htmlFor='bg'
@@ -264,16 +291,16 @@ function PostForm({ update }) {
                 value={subject}
                 
               /> */}
-              <Select options={subjects} isMulti styles={techStyles} onChange={handleSubjectChange}  value={subject} filterOption={filterOption} getOptionLabel={getOptionLabel}  />
+              <Select options={subjects} isMulti styles={techStyles} onChange={handleSubjectChange} value={subject} filterOption={filterOption} getOptionLabel={getOptionLabel} />
             </div>
             <div className='mb-5 flex w-full items-center'>
               <span className='mr-2 text-lg font-bold'>Status:</span>
               <input
                 type='radio'
                 id='active'
-                checked={status === 'active'}
+                checked={status === 'ACTIVE'}
                 className='mx-2 mt-1 '
-                onChange={() => setStatus('active')}
+                onChange={() => setStatus('ACTIVE')}
               />
               <label htmlFor='active' className=''>
                 Active
@@ -281,9 +308,9 @@ function PostForm({ update }) {
               <input
                 type='radio'
                 id='archived'
-                checked={status === 'archived'}
+                checked={status === 'ARCHIVED'}
                 className='mx-2 mt-1'
-                onChange={() => setStatus('archived')}
+                onChange={() => setStatus('ARCHIVED')}
               />
               <label htmlFor='archived'>Archived</label>
             </div>
