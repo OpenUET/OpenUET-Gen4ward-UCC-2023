@@ -1,12 +1,35 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TextareaAutosize from 'react-textarea-autosize'
-import {  faCamera, faCode, faFlask, faGem, faHashtag, faMicrochip, faPen, faSchool, faShareNodes } from '@fortawesome/free-solid-svg-icons'
-import { faReact, faJs, faHtml5, faGithub, faJava, faPhp, faPython, faLaravel, faSwift, faAngular, faCss3 } from '@fortawesome/free-brands-svg-icons'
+import {
+  faCamera,
+  faCode,
+  faFlask,
+  faGem,
+  faHashtag,
+  faMicrochip,
+  faPen,
+  faSchool,
+  faShareNodes
+} from '@fortawesome/free-solid-svg-icons'
+import {
+  faReact,
+  faJs,
+  faHtml5,
+  faGithub,
+  faJava,
+  faPhp,
+  faPython,
+  faLaravel,
+  faSwift,
+  faAngular,
+  faCss3
+} from '@fortawesome/free-brands-svg-icons'
+import { memo } from 'react'
 import { useRef, useState } from 'react'
 import chroma from 'chroma-js'
 import CreatableSelect from 'react-select/creatable'
 import axios from 'axios'
-
+import { useEffect } from 'react'
 import Select, { components } from 'react-select'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
@@ -17,6 +40,8 @@ import { formats, modules, subjects, tagsStyles, techStyles } from '../../utils/
 import { uploadImage } from '../../utils/uploadImage'
 import image from '../../assets'
 import { useNavigate } from 'react-router-dom'
+import { selectUser } from '../../redux/slices/authSlice'
+import { useSelector } from 'react-redux'
 
 const tech = [
   { value: 'reactjs', label: 'ReactJs', icon: faReact, color: 'rgb(14, 165, 233)' },
@@ -31,7 +56,7 @@ const tech = [
   { value: 'swift', label: 'SwiftUI', icon: faSwift, color: 'orange' },
   { value: 'angular', label: 'Angular', icon: faAngular, color: 'red' },
   { value: 'kot', label: 'Kotlin', icon: faCode, color: 'purple' },
-  { value: 'css', label: 'CSS', icon: faCss3, color: 'blue' },
+  { value: 'css', label: 'CSS', icon: faCss3, color: 'blue' }
 ]
 const colourOptions = [
   { value: 'ocean', label: 'Ocean', color: '#00B8D9' },
@@ -62,29 +87,95 @@ const MultiValueLabel = (props) => {
     )
   }
 }
-function PostForm({update}) {
+function PostForm({ data }) {
   const defaultValidate = {
     pname: true,
     title: true,
     description: true,
     content: true
   }
-  const [description, setDescription] = useState('')
-  const [techOptions, setTechOptions] = useState([])
-  const [tagOptions, setTagOptions] = useState([])
-  const [status, setStatus] = useState('ACTIVE')
+  const [description, setDescription] = useState(() => {
+    return data ? data.description : ''
+  })
+  const [techOptions, setTechOptions] = useState(() => {
+    return data
+      ? data.techs.map((t) => {
+          return tech.filter((a) => a.value === t)[0]
+        })
+      : []
+  })
+  const [tagOptions, setTagOptions] = useState(() => {
+    return data
+      ? data.tags.map((tag) => {
+          return { value: tag, label: tag, color: chroma.random().hex() }
+        })
+      : []
+  })
+  const [status, setStatus] = useState(() => {
+    return data ? data.status : 'ACTIVE'
+  })
   // const subject = useRef()
-  const [subject, setSubject] = useState([])
-  const pname = useRef()
-  const title = useRef()
-  const [logo, setLogo] = useState()
-  const [value, setValue] = useState('')
-  const [bg, setBg] = useState()
+  const [subject, setSubject] = useState(() => {
+    return data
+      ? data.subject_id.map((s) => {
+          return subjects.filter((si) => si.id === s)
+        })
+      : []
+  })
+  const pname = useRef(() => {
+    return data ? data.projectName : undefined
+  })
+  const title = useRef(() => {
+    return data ? data.title : undefined
+  })
+  const [logo, setLogo] = useState(() => {
+    return data ? data.logo_url : ''
+  })
+  const [value, setValue] = useState(() => {
+    return data ? data.content : ''
+  })
+  const [bg, setBg] = useState(() => {
+    return data ? data.cover_img_url : ''
+  })
   const [validated, setValidated] = useState(defaultValidate)
   const formatCreateLabel = (inputValue) => `#${inputValue}`
   const socialLink = useRef()
-  const githubLink = useRef()
+  const githubLink = useRef(() => {
+    return data ? data.githubLink : ''
+  })
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (data) {
+      const des = data.description || ''
+      setDescription(data.description)
+      setTechOptions(
+        data.techs.map((t) => {
+          return tech.filter((a) => a.value === t)[0]
+        })
+      )
+      setTagOptions(
+        data.tags.map((tag) => {
+          return { value: tag, label: tag, color: chroma.random().hex() }
+        })
+      )
+      setBg(data.cover_img_url)
+      setLogo(data.logo_url)
+
+      setStatus(data.status)
+      setSubject(
+        data.subject_id.map((s) => {
+          return subjects.filter((si) => si.id === s)[0]
+        })
+      )
+      setValue(data.content)
+      title.current.value = data.title
+      pname.current.value = data.projectName
+      githubLink.current.value = data.githubLink || ''
+    }
+  }, [data])
+
+  const { userInfo } = useSelector(selectUser)
   const handleTagsChange = (newValue, actionMeta) => {
     if (actionMeta.action === 'create-option') {
       const newOption = {
@@ -116,11 +207,9 @@ function PostForm({update}) {
   }
 
   const handleSubjectChange = (newValue) => {
-    console.log(newValue)
     setSubject(newValue)
   }
   const handleTechChange = (newValue, actionMeta) => {
-    console.log(techOptions)
     if (actionMeta.action === 'create-option') {
       const newOption = {
         value: newValue.at(-1).value,
@@ -149,7 +238,6 @@ function PostForm({update}) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (validateAll()) {
-
       let logoUrl = ''
       if (logo) {
         const logoFile = await uploadImage(logo)
@@ -162,7 +250,7 @@ function PostForm({update}) {
         coverImgUrl = coverImgFile.secure_url
       }
 
-      const data = {
+      const d = {
         projectName: pname.current.value,
         title: title.current.value,
         description: description,
@@ -174,19 +262,30 @@ function PostForm({update}) {
         techs: techOptions.map((tech) => tech.value),
         tags: tagOptions.map((tag) => tag.label),
         // socialLink: socialLink.current.value,
-        githubLink: githubLink.current.value,
+        githubLink: githubLink.current.value
+      }
+      
+      // Todo: change backend url]
+      if (data) {
+        axios
+          .patch(`http://127.0.0.1:3333/api/posts/${data?._id}`, {
+            data: d,
+            userId: userInfo?._id
+          })
+          .then((res) => {
+            navigate(`/posts/${res.data._id}`)
+          })
+      } else {
+        axios
+          .post('http://127.0.0.1:3333/api/posts', {
+            data: d,
+            userId: userInfo?._id
+          })
+          .then((res) => {
+            navigate(`/posts/${res.data._id}`)
+          })
       }
 
-      console.log(data)
-
-      // Todo: change backend url
-      axios.post('http://127.0.0.1:3333/api/posts', {
-        data: data,
-        userId: "64c4d435f70d4d57567f6877"
-      }).then((res) => {
-        console.log(res.data._id)
-        navigate(`/posts/${res.data._id}`)
-      })
       return
     }
   }
@@ -213,14 +312,11 @@ function PostForm({update}) {
           className={`flex flex-col w-full h-[250px]  rounded-xl object-contain items-end justify-between mb-6 relative`}
         >
           <div className='absolute top-0 rounded-2xl w-full h-full  object-center overflow-hidden'>
-            <img
-              src={bg?.preview || image.defaultBg}
-              className='w-full object-cover'
-            />
+            <img src={data ? bg : bg?.preview || image.defaultBg} className='w-full object-cover' />
           </div>
           <label
             htmlFor='bg'
-            className='bg-white rounded-xl w-40 py-1 text-black-50 font-bold flex justify-center items-center bottom-2 right-4 absolute h-fit'
+            className='bg-white rounded-xl w-40 py-1 text-black-50 font-bold flex justify-center items-center bottom-6 right-6 absolute h-fit'
           >
             Edit background
           </label>
@@ -238,33 +334,43 @@ function PostForm({update}) {
                 </label>
                 <input accept='image/*' type='file' id='logo' onChange={handleLogo} className='hidden' />
                 <div className='w-16 h-16 rounded-full overflow-hidden '>
-                  <img src={logo?.preview || image.defaultLogo} alt={''} className='w-full outline-none bg-black-50  h-full object-cover' />
+                  <img
+                    src={data ? logo : logo?.preview || image.defaultLogo}
+                    alt={''}
+                    className='w-full outline-none bg-black-50  h-full object-cover'
+                  />
                 </div>
               </div>
-              <div className='flex flex-col items-start w-fit  z-10 '>
-                <div className='flex justify-start'>
-                  <input
-                    ref={pname}
-                    id='pname'
-                    className={
-                      `bg-transparent font-bold outline-none text-xl placeholder:text-white  caret-white ` +
-                      (!validated.pname ? ' placeholder:text-red-500' : '')
-                    }
-                    placeholder={validated.pname ? 'ENTER PROJECT NAME' : 'PROJECT NAME IS REQUIRED'}
-                  />
-                  <label htmlFor='pname'><FontAwesomeIcon icon={faPen} /></label>
-                </div>
-                <div className='flex'>
-                  <input
-                    ref={title}
-                    id='title'
-                    className={
-                      'bg-transparent  outline-none placeholder:text-white caret-white ' +
-                      (!validated.title ? ' placeholder:text-red-500' : '')
-                    }
-                    placeholder={validated.title ? 'Title for your project' : 'Title is required'}
-                  />
-                  <label htmlFor='title'><FontAwesomeIcon icon={faPen} /></label>
+              <div className='flex flex-col items-start w-fit'>
+                <div className='flex flex-col items-start'>
+                  <div className='flex flex-1 text-white text-2xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'>
+                    <input
+                      ref={pname}
+                      id='pname'
+                      className={
+                        `bg-transparent font-bold outline-none text-xl placeholder:text-white  caret-white ` +
+                        (!validated.pname ? ' placeholder:text-red-500' : '')
+                      }
+                      placeholder={validated.pname ? 'ENTER PROJECT NAME' : 'PROJECT NAME IS REQUIRED'}
+                    />
+                    <label htmlFor='pname' className='text-base'>
+                      <FontAwesomeIcon icon={faPen} />
+                    </label>
+                  </div>
+                  <div className='flex flex-1 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'>
+                    <input
+                      ref={title}
+                      id='title'
+                      className={
+                        'bg-transparent  outline-none placeholder:text-white caret-white ' +
+                        (!validated.title ? ' placeholder:text-red-500' : '')
+                      }
+                      placeholder={validated.title ? 'Title for your project' : 'Title is required'}
+                    />
+                    <label htmlFor='title'>
+                      <FontAwesomeIcon icon={faPen} />
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
@@ -325,7 +431,15 @@ function PostForm({update}) {
                 value={subject}
                 
               /> */}
-              <Select options={subjects} isMulti styles={techStyles} onChange={handleSubjectChange} value={subject} filterOption={filterOption} getOptionLabel={getOptionLabel} />
+              <Select
+                options={subjects}
+                isMulti
+                styles={techStyles}
+                onChange={handleSubjectChange}
+                value={subject}
+                filterOption={filterOption}
+                getOptionLabel={getOptionLabel}
+              />
             </div>
             <div className='mb-5 flex w-full items-center'>
               <span className='mr-2 text-lg font-bold'>Status:</span>
@@ -429,4 +543,4 @@ function PostForm({update}) {
   )
 }
 
-export default PostForm
+export default memo(PostForm)

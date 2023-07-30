@@ -11,9 +11,10 @@ import DOMPurify from 'dompurify';
 import { techOptions } from '../../utils/techOptions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const PostDetail = ({ title, projectName, createdAt, githubLink, content, status, logoUrl, stars, tags, description, subjectId, coverImgUrl, techs }) => {
+const PostDetail = ({ id,title, projectName, createdAt, githubLink, content, status, logoUrl, stars, tags, description, subjectId, coverImgUrl, techs }) => {
   const [star, setStar] = useState(false);
   // const [status, setStatus] = useState("active");
+
   const sanitizedData = (data) => ({
     __html: DOMPurify.sanitize(data)
   })
@@ -84,17 +85,15 @@ const PostDetail = ({ title, projectName, createdAt, githubLink, content, status
             <div className='flex w-1/4'>Tech Stack</div>
             <div className='flex items-center justify-start space-x-4'>
               <div className='flex items-center justify-center'>
-                {techs?.slice(0, 3).map((tech, index) => {
+                {techs?.map((tech, index) => {
                   const techOption = techOptions.find(techOption => techOption.value === tech)
                   return (
-                    <div key={index} className="w-6 h-6 rounded-full overflow-hidden mr-1">
-                      <FontAwesomeIcon key={index} icon={techOption?.icon} className={`text-white`} />
+                    <div key={index} className="text-3xl rounded-full overflow-hidden mr-3">
+                      <FontAwesomeIcon key={index} icon={techOption?.icon} style={{color:techOption.color}} />
                     </div>
                   )
                 })}
-                {techs?.length > 3 && (
-                  <div className="overflow-hidden text-white text-right drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">+ {techs?.length - 3}</div>
-                )}
+         
               </div>
             </div>
           </div>
@@ -103,14 +102,11 @@ const PostDetail = ({ title, projectName, createdAt, githubLink, content, status
             <div className='flex w-1/4'>Tags</div>
             <div className='flex items-center justify-start'>
               <div className='flex items-center justify-center'>
-                {tags?.slice(0, 3).map((tag, index) => (
+                {tags?.map((tag, index) => (
                   <div key={index} className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] whitespace-nowrap text-white w-auto h-auto rounded-2xl overflow-hidden px-3 py-1 mr-1 bg-transparent border-2 border-white">
                     {tag}
                   </div>
                 ))}
-                {tags?.length > 3 && (
-                  <div className="overflow-hidden text-white text-right drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">+ {tags?.length - 3}</div>
-                )}
                 {tags?.length === 0 && (
                   <div className="overflow-hidden text-white text-right drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">-</div> 
                 )}
@@ -141,7 +137,7 @@ const PostDetail = ({ title, projectName, createdAt, githubLink, content, status
           <div className="flex flex-1 mt-8 text-white text-xl font-bold">{projectName}</div>
           <div className="flex flex-1 items-end justify-end w-full">
             <div
-              onClick={() => navigate('/updatepost')}
+              onClick={() => navigate('/updatepost/' + id)}
               className='flex items-center justify-center cursor-pointer bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1 mr-2'
             >
               <FaPencilAlt className='mr-1' />

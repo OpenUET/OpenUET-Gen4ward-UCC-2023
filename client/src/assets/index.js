@@ -1,4 +1,4 @@
-import defaultBg from './697fa4b3f470272e7e61.jpg'
+import defaultBg from './bg.jpg'
 import defaultLogo from './fire.png'
 const image = {
   defaultBg,

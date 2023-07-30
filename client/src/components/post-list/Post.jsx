@@ -72,8 +72,8 @@ const Post = ({ id, title, projectName, status, logoUrl, coverImgUrl, stars, mem
 							{techs?.slice(0, 3).map((tech, index) => {
 								const techOption = techOptions.find(techOption => techOption.value === tech)
 								return (
-									<div key={index} className="w-6 h-6 rounded-full overflow-hidden mr-1">
-										<FontAwesomeIcon key={index} icon={techOption?.icon} className={`text-white`} />
+									<div key={index} className=" text-3xl rounded-full overflow-hidden mr-3">
+										<FontAwesomeIcon key={index} icon={techOption?.icon} style={{color:techOption.color}} />
 									</div>
 								)
 							})}

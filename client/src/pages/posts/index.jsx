@@ -32,6 +32,7 @@ export default function Posts() {
         <div className="pt-28 flex gap-6">
           <div className="flex-1 relative">
             <PostDetail
+              id={post._id}
               title={post.title}
               projectName={post.projectName}
               createdAt={post.createdAt}
