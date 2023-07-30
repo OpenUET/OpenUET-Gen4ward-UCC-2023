@@ -1,5 +1,5 @@
 import { Toaster } from "react-hot-toast";
-import ListView from "../../components/list/ListView";
+import ListView from "../../components/post-list/ListView";
 import NavBar from '../../components/nav/NavBar';
 import LeftSideBar from '../../components/layout/LeftSideBar';
 import './Home.css';

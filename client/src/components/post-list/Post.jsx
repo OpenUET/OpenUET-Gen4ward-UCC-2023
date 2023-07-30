@@ -1,10 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Profile from '../profile/Profile'
+import axios from 'axios'
+import image from '../../assets'
 
-const Post = ({ id, title, projectName, status, logoUrl, coverImgUrl, stars, members, techs, tags, owner }) => {
+const Post = ({ id, title, projectName, status, logoUrl, coverImgUrl, stars, members, techs, tags, owner: ownerId }) => {
+	const [owner, setOwner] = useState({})
+
+	useEffect(() => {
+		// Get owner
+		axios.get(`http://127.0.0.1:3333/api/users/${ownerId}`)
+			.then(res => res.data)
+			.then(data => setOwner(data))
+			.catch(err => console.log(err))
+
+	}, [ownerId])
+
 	return (
 		<a href={'/posts/' + id}>
-			<div className={`bg-[url('${coverImgUrl || '/images/Nachoneko.jpg'}')] bg-cover flex flex-col w-full rounded-xl items-start justify-between`}>
+			<div style={{'--image-url': `url(${coverImgUrl || image.defaultBg})`}} className={`bg-[image:var(--image-url)] bg-cover flex flex-col w-full rounded-xl items-start justify-between border `}>
 				<div className="flex items-start justify-between w-full flex-col md:flex-row">
 					{/* Project name */}
 					<div className="flex flex-1 items-center justify-start space-x-4 ml-8 mt-8 flex-shrink-0">
@@ -34,11 +47,11 @@ const Post = ({ id, title, projectName, status, logoUrl, coverImgUrl, stars, mem
 							<div className="flex flex-1 items-center justify-start space-x-4">
 								<div className="flex items-center justify-center">
 									<div className="w-6 h-6 rounded-full overflow-hidden mr-1">
-										<Profile id={owner} avatar_url={''} full_name={''} />
+										<Profile id={ownerId} avatar_url={owner.avatarUrl} full_name={''} />
 									</div>
 									{members.slice(0, 3).map((member, index) => (
 										<div key={index} className="w-6 h-6 rounded-full overflow-hidden mr-1">
-											<Profile id={member.id} avatar_url={member.avatar_url} full_name={member.name} />
+											<Profile id={member.id} avatar_url={member.avatarUrl} full_name={member.name} />
 										</div>
 									))}
 									{members.length > 3 && (

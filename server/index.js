@@ -38,7 +38,7 @@ function initRoutes() {
       await mongoose.connect(appConfig.mongoURI,{
         dbName: 'openuet',
       });
-      console.log("Connect to mongoose is successful!");
+      console.log("Connect to mongoose successfully!");
     } catch (error) {
       console.log("Caught! Cannot connect to mongodb: ", error);
     }

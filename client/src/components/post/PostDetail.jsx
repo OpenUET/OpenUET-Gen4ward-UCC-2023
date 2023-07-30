@@ -4,10 +4,14 @@ import { useState } from 'react';
 import { AiOutlineStar } from "react-icons/ai";
 import { AiFillStar } from "react-icons/ai";
 import { FaPencilAlt } from "react-icons/fa";
+import DOMPurify from 'dompurify';
 
 const PostDetail = ({ title, projectName, createdAt, githubLink, content, status }) => {
 	const [star, setStar] = useState(false);
 	// const [status, setStatus] = useState("active");
+	const sanitizedData = (data) => ({
+    __html: DOMPurify.sanitize(data)
+  })
 
 	const handleClickStar = () => {
 		setStar(!star);
@@ -140,9 +144,7 @@ const PostDetail = ({ title, projectName, createdAt, githubLink, content, status
 						<div className="flex cursor-pointer bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1"><a href={githubLink}>Visit Github</a></div>
 					</div>
 				</div>
-				<div className="flex flex-col w-full mt-8 text-white">
-					{content}
-				</div>
+				<div className="flex flex-col w-full mt-8 text-white" dangerouslySetInnerHTML={sanitizedData(content)} />
 			</div>
 		</div>
 	)
