@@ -4,3 +4,25 @@
   padding: 2rem;
   text-align: center; */
 }
+.ql-editor {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 30px;
+  color: lightgray;
+}
+
+.ql-bubble .ql-editor pre {
+  padding: 24px;
+  border-radius: 10px;
+}
+
+.ql-bubble .ql-editor pre.ql-syntax {
+  color: #ab9bab;
+  background: #1b181b;
+}
+
+.ql-editor.ql-blank::before {
+  color: white;
+}
+

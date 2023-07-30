@@ -1,4 +1,44 @@
-/* :root {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.ql-formats {
+  color: white !important;
+  font-size: 16px;
+  
+}
+.ql-snow .ql-picker{
+  color:white;
+  font-size: 16px;
+  
+}
+
+.ql-snow .ql-stroke{
+  stroke: #fff;
+  font-size: 16px;
+  
+}
+.ql-fill{
+  fill:white  !important;
+  font-size: 16px;
+  
+}
+.ql-snow .ql-fill, .ql-snow .ql-stroke.ql-fill {
+  fill:white  !important;
+  font-size: 16px;
+  
+}
+.invalid .ql-toolbar.ql-snow {
+  border: 1px solid rgb(239, 68, 68);
+}
+.invalid .ql-container.ql-snow {
+  border: 1px solid rgb(239, 68, 68);
+}
+.invalid .ql-editor.ql-blank::before {
+  color:rgb(239, 68, 68) ;
+}
+/* :ro  ot {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
