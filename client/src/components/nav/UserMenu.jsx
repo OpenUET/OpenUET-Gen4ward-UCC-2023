@@ -1,11 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { AiOutlineMenu } from 'react-icons/ai'
-import MenuItem from '../MenuItem'
-import Avatar from '../profile/Avatar'
-import AuthPopup from './AuthPopup'
+import { useEffect, useRef, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { AUTH_ACTIONS, selectUser } from '../../redux/slices/authSlice'
+import MenuItem from '../MenuItem'
+import Avatar from '../profile/Avatar'
+import AuthPopup from './AuthPopup'
 
 export default function UserMenu() {
   const menuRef = useRef(null)
@@ -34,7 +33,7 @@ export default function UserMenu() {
   }
 
   const handleHelp = () => {
-
+    toast('Help is on the way! 🚀')
   }
 
   return (

@@ -8,12 +8,12 @@ const notification_data_example = {
   lastRead: 0,
   recent_notifications: [
     {
-      title: "Nguyễn Văn A want to join your team at Aninagori",
-      url: "/posts/1",
+      title: "Nguyễn Văn B and others want to join your team at OOP-Bomberman-Game",
+      url: "/posts/64c60346be0d0cba636ae4d6",
     },
     {
-      title: "Nguyễn Văn B and others voted for your post at Calendoro",
-      url: "/posts/2",
+      title: "Nguyễn Văn C and others stared for your project Calendoro",
+      url: "/posts/64c50a349f511129db92c8ae",
     }
   ]
 }
