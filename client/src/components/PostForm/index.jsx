@@ -312,7 +312,7 @@ function PostForm({ data }) {
           className={`flex flex-col w-full h-[250px]  rounded-xl object-contain items-end justify-between mb-6 relative`}
         >
           <div className='absolute top-0 rounded-2xl w-full h-full  object-center overflow-hidden'>
-            <img src={data ? bg : bg?.preview || image.defaultBg} className='w-full object-cover' />
+            <img src={bg?.preview || bg || image.defaultBg} className='w-full object-cover' />
           </div>
           <label
             htmlFor='bg'
@@ -335,7 +335,7 @@ function PostForm({ data }) {
                 <input accept='image/*' type='file' id='logo' onChange={handleLogo} className='hidden' />
                 <div className='w-16 h-16 rounded-full overflow-hidden '>
                   <img
-                    src={data ? logo : logo?.preview || image.defaultLogo}
+                    src={ logo?.preview || logo || image.defaultLogo}
                     alt={''}
                     className='w-full outline-none bg-black-50  h-full object-cover'
                   />
