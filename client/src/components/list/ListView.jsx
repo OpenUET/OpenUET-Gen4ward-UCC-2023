@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import Post from './Post'
+import Filter from './Filter'
 
 const ListView = () => {
   const [posts, setPosts] = useState([])
@@ -13,6 +14,12 @@ const ListView = () => {
 
   return (
     <div className="bg-black-100 flex-col inline-flex items-start justify-center gap-4 flex-1 py-4 w-full">
+      <div className="flex items-center justify-between mt-2 w-full">
+        <div className="flex flex-1 text-white text-3xl">Explore Projects</div>
+        <div className="flex flex-1 justify-end">
+          <Filter />
+        </div>
+      </div>
       {posts.map(post => (
         <Post
           key={post._id}
