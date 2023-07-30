@@ -11,8 +11,9 @@ import PostDetail from "../../components/post/PostDetail";
 import { selectUser } from "../../redux/slices/authSlice";
 import './Posts.css';
 
+
 export default function Posts() {
-  const location = useLocation();
+  const location = useLocation()
   const [post, setPost] = useState({})
   const [team, setTeam] = useState({})
   const [requests, setRequests] = useState([
@@ -33,12 +34,12 @@ export default function Posts() {
   const { isLoggedIn, userInfo } = useSelector(selectUser)
 
   useEffect(() => {
-    const id = location.pathname.split('/')[2];
+    const id = location.pathname.split('/')[2]
 
     fetch('http://127.0.0.1:3333/api/posts/' + id)
-      .then(res => res.json())
+      .then((res) => res.json())
       // .then(data => console.log(data))
-      .then(data => {
+      .then((data) => {
         setPost(data)
       })
 
@@ -69,10 +70,11 @@ export default function Posts() {
     <>
       <Toaster />
       <NavBar />
-      <div className="max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
-        <div className="pt-28 flex gap-6">
-          <div className="flex-1 relative">
+      <div className='max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4'>
+        <div className='pt-28 flex gap-6'>
+          <div className='flex-1 relative'>
             <PostDetail
+              id={post._id}
               title={post.title}
               projectName={post.projectName}
               createdAt={post.createdAt}
