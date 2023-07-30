@@ -12,77 +12,81 @@ export const getPostById = async (req, res) => {
 };
 
 export const getPostsByUserId = async (req, res) => {
-  const owner = req.params.id;
-  const resp = await postService.getPostsByUserId(owner);
-  return res.status(200).json(resp);
+    const owner = req.params.id;
+    const resp = await postService.getPostsByUserId(owner);
+    return res.status(200).json(resp);
 };
 
 export const createPost = async (req, res) => {
-  const { data, userId: owner } = req.body;
-  const {
-    title,
-    projectName,
-    content,
-    tags,
-    forkedProjectId,
-    githubLink,
-    status,
-    cover_img_url,
-    logo_url,
-    subject_id,
-    techs
-  } = data;
+    const { data, userId: owner } = req.body;
+    const {
+        title,
+        projectName,
+        content,
+        tags,
+        forkedProjectId,
+        githubLink,
+        status,
+        cover_img_url,
+        logo_url,
+        subject_id,
+        techs,
+        description,
+    } = data;
 
-  const resp = await postService.createPost({
-    owner,
-    title,
-    projectName,
-    content,
-    tags,
-    forkedProjectId,
-    githubLink,
-    status,
-    cover_img_url,
-    logo_url,
-    subject_id,
-    techs
-  });
-  return res.status(201).json(resp);
+    const resp = await postService.createPost({
+        owner,
+        title,
+        projectName,
+        content,
+        tags,
+        forkedProjectId,
+        githubLink,
+        status,
+        cover_img_url,
+        logo_url,
+        subject_id,
+        techs,
+        description,
+    });
+    return res.status(201).json(resp);
 };
 
 export const updatePostById = async (req, res) => {
     const postId = req.params.id;
     const { data, userId: ownerId } = req.body;
 
-  const {
-    title,
-    projectName,
-    content,
-    tags,
-    forkedProjectId,
-    githubLink,
-    status,
-    cover_img_url,
-    logo_url,
-    subject_id,
-    techs
-  } = data;
+    const {
+        title,
+        projectName,
+        content,
+        tags,
+        forkedProjectId,
+        githubLink,
+        status,
+        cover_img_url,
+        logo_url,
+        subject_id,
+        techs,
+        description,
+    } = data;
 
-  const resp = await postService.updatePostById(postId, {
-    ownerId,
-    title,
-    projectName,
-    content,
-    tags,
-    forkedProjectId,
-    githubLink,
-    status,
-    cover_img_url,
-    logo_url,
-    subject_id,
-    techs
-  });
-  return res.status(200).json(resp);
+    const resp = await postService.updatePostById(postId, {
+        ownerId,
+        title,
+        projectName,
+        content,
+        tags,
+        forkedProjectId,
+        githubLink,
+        status,
+        cover_img_url,
+        logo_url,
+        subject_id,
+        techs,
+        description,
+    });
+    return res.status(200).json(resp);
 };
 export const starPostById = async (req, res) => {
     const postId = req.params.id;
