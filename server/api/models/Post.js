@@ -36,7 +36,7 @@ const PostSchema = new Schema(
       default: [],
     },
     tags: {
-      type: [String],
+      type: [Object],
       default: [],
     },
     forkedProject: {
@@ -75,6 +75,28 @@ const PostSchema = new Schema(
     subject_id: {
       type: [String],
       required: false,
+    },
+    pendingRequests: {
+      type: [
+        {
+          userId: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+          },
+        },
+      ],
+      default: [],
+    },
+    pendingInvitations: {
+      type: [
+        {
+          userId: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+          },
+        },
+      ],
+      default: [],
     },
   },
   { timestamps: true },
