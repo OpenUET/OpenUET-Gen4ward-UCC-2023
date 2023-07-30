@@ -5,6 +5,7 @@ import { faReact, faJs, faHtml5, faGithub } from '@fortawesome/free-brands-svg-i
 import { useRef, useState } from 'react'
 import chroma from 'chroma-js'
 import CreatableSelect from 'react-select/creatable'
+import axios from 'axios'
 
 import Select, { components } from 'react-select'
 import ReactQuill from 'react-quill'
@@ -13,6 +14,7 @@ import 'react-quill/dist/quill.snow.css'
 import 'react-quill/dist/quill.snow.css'
 import './postform.css'
 import { formats, modules, subjects, tagsStyles, techStyles } from '../../utils/constanceValue'
+import { uploadImage } from '../../utils/uploadImage'
 
 const tech = [
   { value: 'reactjs', label: 'ReactJs', icon: faReact, color: 'rgb(14, 165, 233)' },
@@ -58,7 +60,7 @@ function PostForm({ update }) {
   const [description, setDescription] = useState('')
   const [techOptions, setTechOptions] = useState([])
   const [tagOptions, setTagOptions] = useState([])
-  const [status, setStatus] = useState('active')
+  const [status, setStatus] = useState('ACTIVE')
   // const subject = useRef()
   const [subject, setSubject] = useState([])
   const pname = useRef()
@@ -131,10 +133,41 @@ function PostForm({ update }) {
     setValidated(dataNeedValid)
     return Object.values(dataNeedValid).every((d) => d === true)
   }
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (validateAll()) {
       console.log('okay')
+
+      const logoFile = await uploadImage(logo)
+      const logoUrl = logoFile.secure_url
+
+      const coverImgFile = await uploadImage(bg)
+      const coverImgUrl = coverImgFile.secure_url
+
+      const data = {
+        projectName: pname.current.value,
+        title: title.current.value,
+        description: description,
+        content: value,
+        logo_url: logoUrl,
+        cover_img_url: coverImgUrl,
+        status: status,
+        subject_id: subject.map((s) => s.id),
+        techs: techOptions.map((t) => t.value),
+        tags: tagOptions.map((t) => t.value),
+        // socialLink: socialLink.current.value,
+        githubLink: githubLink.current.value
+      }
+
+      axios.post('http://127.0.0.1:3333/api/posts', {
+        data: data,
+        userId: "64c4d435f70d4d57567f6877"
+      }).then((res) => {
+        console.log(res)
+      })
+
+      console.log(data)
+      return
     }
 
     console.log('missing field')
@@ -142,7 +175,7 @@ function PostForm({ update }) {
 
   const filterOption = (option, inputValue) => {
     // Filter options based on both id and name
-    const {data} = option
+    const { data } = option
     return (
       data.id.toLowerCase().includes(inputValue.toLowerCase()) ||
       data.name.toLowerCase().includes(inputValue.toLowerCase())
@@ -155,15 +188,16 @@ function PostForm({ update }) {
     </div>
   )
   return (
-    <div className='bg-black-100 inline-flex items-start justify-center gap-3 flex-1 p-4 w-full mb-20'>
+    <div className='bg-black-100 inline-flex items-start justify-center gap-3 flex-1 w-full mb-20'>
       <div className='flex flex-col w-full text-white'>
         {/* Project cover */}
         <div
           className={`flex flex-col w-full h-[250px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-xl object-contain items-end justify-between mb-6 relative`}
         >
+          {/* Todo: Add background placeholder */}
           <img
             src={bg?.preview || ''}
-            className='absolute top-0 h-full right-[50%] z-0   translate-x-1/2 object-center object-contain'
+            className='absolute top-0 h-full right-[50%] translate-x-1/2 object-center object-contain'
           />
           <label
             htmlFor='bg'
@@ -185,7 +219,7 @@ function PostForm({ update }) {
                 </label>
                 <input accept='image/*' type='file' id='logo' onChange={handleLogo} className='hidden' />
                 <div className='w-16 h-16 rounded-full overflow-hidden '>
-                  <img src={logo?.preview || '../../assets//download.jpg'} alt={''} className='w-full outline-none bg-gradient-to-l from-indigo-500 via-purple-500 to-pink-500  h-full object-cover' />
+                  <img src={logo?.preview || ''} alt={''} className='w-full outline-none h-full object-cover' />
                 </div>
               </div>
               <div className='flex flex-col items-start w-1/2 z-10 '>
@@ -264,16 +298,16 @@ function PostForm({ update }) {
                 value={subject}
                 
               /> */}
-              <Select options={subjects} isMulti styles={techStyles} onChange={handleSubjectChange}  value={subject} filterOption={filterOption} getOptionLabel={getOptionLabel}  />
+              <Select options={subjects} isMulti styles={techStyles} onChange={handleSubjectChange} value={subject} filterOption={filterOption} getOptionLabel={getOptionLabel} />
             </div>
             <div className='mb-5 flex w-full items-center'>
               <span className='mr-2 text-lg font-bold'>Status:</span>
               <input
                 type='radio'
                 id='active'
-                checked={status === 'active'}
+                checked={status === 'ACTIVE'}
                 className='mx-2 mt-1 '
-                onChange={() => setStatus('active')}
+                onChange={() => setStatus('ACTIVE')}
               />
               <label htmlFor='active' className=''>
                 Active
@@ -281,9 +315,9 @@ function PostForm({ update }) {
               <input
                 type='radio'
                 id='archived'
-                checked={status === 'archived'}
+                checked={status === 'ARCHIVED'}
                 className='mx-2 mt-1'
-                onChange={() => setStatus('archived')}
+                onChange={() => setStatus('ARCHIVED')}
               />
               <label htmlFor='archived'>Archived</label>
             </div>
