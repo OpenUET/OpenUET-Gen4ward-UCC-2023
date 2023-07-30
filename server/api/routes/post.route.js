@@ -4,9 +4,11 @@ import { catchAsync } from '../utils/catchAsync.js';
 
 const router = Router();
 
+router.get('/:id', catchAsync(controller.getPostById));
+
 router.get('/', catchAsync(controller.getAllPosts));
 
-router.get('/:id', catchAsync(controller.getPostById));
+router.get('/owner/:id', catchAsync(controller.getPostsByUserId));
 
 router.post('/', catchAsync(controller.createPost));
 
