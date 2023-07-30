@@ -177,6 +177,7 @@ function PostForm({ update }) {
         githubLink: githubLink.current.value,
       }
 
+      // Todo: change backend url
       axios.post('http://127.0.0.1:3333/api/posts', {
         data: data,
         userId: "64c4d435f70d4d57567f6877"

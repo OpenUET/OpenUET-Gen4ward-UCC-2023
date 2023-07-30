@@ -7,20 +7,14 @@ import { AiFillStar } from 'react-icons/ai'
 import { FaPencilAlt } from 'react-icons/fa'
 import getTimeDiff from '../../utils/timeDiff'
 import image from '../../assets'
+import DOMPurify from 'dompurify';
 
-const PostDetail = ({
-  id,
-  title,
-  projectName,
-  status,
-  logoUrl,
-  coverImgUrl,
-  stars,
-  tags,
-  createdAt
-}) => {
-  const [star, setStar] = useState(false)
-  // const [status, setStatus] = useState("active");
+const PostDetail = ({ title, projectName, createdAt, githubLink, content, status, logoUrl, stars, tags }) => {
+	const [star, setStar] = useState(false);
+	// const [status, setStatus] = useState("active");
+	const sanitizedData = (data) => ({
+    __html: DOMPurify.sanitize(data)
+  })
 
   const handleClickStar = () => {
     setStar(!star)
@@ -149,43 +143,38 @@ const PostDetail = ({
         </div>
       </div>
 
-      {/* Project detail */}
-      <div className='flex flex-col border-t-[1px] border-neutral-700 mt-8'>
-        <div className='flex w-full'>
-          <div className='flex flex-1 mt-8 text-white text-xl font-bold'>{projectName}</div>
-          <div className='flex flex-1 items-end justify-end w-full'>
-            <div
+			{/* Project detail */}
+			<div className="flex flex-col border-t-[1px] border-neutral-700 mt-8">
+				<div className="flex w-full">
+					<div className="flex flex-1 mt-8 text-white text-xl font-bold">{projectName}</div>
+					<div className="flex flex-1 items-end justify-end w-full">
+          <div
               onClick={() => navigate('/updatepost')}
               className='flex items-center justify-center cursor-pointer bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1 mr-2'
             >
               <FaPencilAlt className='mr-1' />
               Edit
             </div>
-            <div
-              onClick={() => handleClickStar()}
-              className={`${
-                star == true ? 'text-yellow-400 border-yellow-400' : ''
-              } flex items-center justify-center cursor-pointer bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1 mr-2`}
-            >
-              {star == true ? <AiFillStar className={`mr-1 scale-up-center`} /> : <AiOutlineStar className={`mr-1`} />}
-              Star
-            </div>
-            {status == 'ARCHIVED' ? (
-              <div className='flex cursor-pointer bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1 mr-2'>
-                Fork
-              </div>
-            ) : (
-              <></>
-            )}
-            <div className='flex cursor-pointer bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1'>
-              <a href={githubLink}>Visit Github</a>
-            </div>
-          </div>
-        </div>
-        <div className='flex flex-col w-full mt-8 text-white'>{content}</div>
-      </div>
-    </div>
-  )
+						<div onClick={() => handleClickStar()} className={`${star == true ? "text-yellow-400 border-yellow-400" : ""} flex items-center justify-center cursor-pointer bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1 mr-2`}>
+							{star == true ? (
+								<AiFillStar className={`mr-1 scale-up-center`} />
+							) : (
+								<AiOutlineStar className={`mr-1`} />
+							)}
+							Star
+						</div>
+						{status == "ARCHIVED" ? (
+							<div className="flex cursor-pointer bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1 mr-2">Fork</div>
+						) : (
+							<></>
+						)}
+						<div className="flex cursor-pointer bg-transparent rounded-2xl border-2 border-white text-white px-4 py-1"><a href={githubLink}>Visit Github</a></div>
+					</div>
+				</div>
+        <div className="flex flex-col w-full mt-8 text-white" dangerouslySetInnerHTML={sanitizedData(content)} />
+			</div>
+		</div>
+	)
 }
 
 export default PostDetail
