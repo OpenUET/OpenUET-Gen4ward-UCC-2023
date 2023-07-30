@@ -11,7 +11,7 @@ export default function UserMenu() {
   const navigate = useNavigate();
   const menuRef = useRef(null)
   const [menuOpen, setMenuOpen] = useState(false)
- 
+
   const [activeTab, setActiveTab] = useState('') // login, signup, verify, set-password, edit-profile-...
 
   const dispatch = useDispatch()
@@ -57,8 +57,8 @@ export default function UserMenu() {
           <div onClick={() => setMenuOpen(false)} className='flex flex-col w-full cursor-pointer'>
             {isLoggedIn ? (
               <>
-                <MenuItem label='New project' onClick={() => {}} />
-                <MenuItem label='Your project' onClick={() => {}} />
+                <MenuItem label='New project' onClick={() => { navigate('/newpost') }} />
+                <MenuItem label='Your project' onClick={() => { }} />
                 <div className='border-t-[1px] my-2 border-neutral-700' />
 
                 <MenuItem
