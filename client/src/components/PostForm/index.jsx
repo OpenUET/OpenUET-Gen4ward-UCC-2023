@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TextareaAutosize from 'react-textarea-autosize'
-import { faC, faCamera, faCode, faFlask, faGem, faHashtag, faMicrochip, faPen, faSchool, faShareNodes } from '@fortawesome/free-solid-svg-icons'
+import {  faCamera, faCode, faFlask, faGem, faHashtag, faMicrochip, faPen, faSchool, faShareNodes } from '@fortawesome/free-solid-svg-icons'
 import { faReact, faJs, faHtml5, faGithub, faJava, faPhp, faPython, faLaravel, faSwift, faAngular, faCss3 } from '@fortawesome/free-brands-svg-icons'
 import { useRef, useState } from 'react'
 import chroma from 'chroma-js'
@@ -62,7 +62,7 @@ const MultiValueLabel = (props) => {
     )
   }
 }
-function PostForm({ update }) {
+function PostForm({update}) {
   const defaultValidate = {
     pname: true,
     title: true,
@@ -120,6 +120,7 @@ function PostForm({ update }) {
     setSubject(newValue)
   }
   const handleTechChange = (newValue, actionMeta) => {
+    console.log(techOptions)
     if (actionMeta.action === 'create-option') {
       const newOption = {
         value: newValue.at(-1).value,
@@ -161,7 +162,6 @@ function PostForm({ update }) {
         coverImgUrl = coverImgFile.secure_url
       }
      
-
       const data = {
         projectName: pname.current.value,
         title: title.current.value,

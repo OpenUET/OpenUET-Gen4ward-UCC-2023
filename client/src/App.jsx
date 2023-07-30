@@ -11,7 +11,7 @@ const router = createBrowserRouter(
       <Route exact path='/github/callback' element={<GithubCallbackPage />} />
       <Route exact path='/posts/:id' element={<Posts />} />
       <Route exact path='/newpost' element={<NewPost />} />
-      <Route exact path='/updatepost' element={<NewPost update/>}/>
+      <Route exact path='/updatepost/:id' element={<NewPost update/>}/>
     </Route>
   )
 )

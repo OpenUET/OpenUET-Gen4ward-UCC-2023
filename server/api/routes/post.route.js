@@ -11,6 +11,7 @@ router.get('/:id', catchAsync(controller.getPostById));
 router.post('/', catchAsync(controller.createPost));
 
 router.patch('/:id', catchAsync(controller.updatePostById));
+router.patch('/:id/star', catchAsync(controller.starPostById));
 
 router.delete('/:id', catchAsync(controller.deletePostById));
 
