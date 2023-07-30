@@ -45,7 +45,7 @@ const PostSchema = new Schema(
       default: null,
     },
     techs: {
-      type: [Object],
+      type: [String],
       default: [],
     },
     status: {

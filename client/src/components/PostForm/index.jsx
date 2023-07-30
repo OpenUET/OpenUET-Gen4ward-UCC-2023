@@ -24,7 +24,7 @@ const tech = [
   { value: 'html', label: 'HTML', icon: faHtml5, color: 'orange' },
   { value: 'java', label: 'Java', icon: faJava, color: 'white' },
   { value: 'python', label: 'Python', icon: faPython, color: 'blue' },
-  { value: 'flask', label: 'Flask', icon:faFlask , color: 'white' },
+  { value: 'flask', label: 'Flask', icon: faFlask, color: 'white' },
   { value: 'php', label: 'PhP', icon: faPhp, color: 'white' },
   { value: 'ror', label: 'Ruby on Rails', icon: faGem, color: 'red' },
   { value: 'lavarel', label: 'Lavarel', icon: faLaravel, color: 'red' },
@@ -134,7 +134,7 @@ function PostForm({ update }) {
       setTechOptions(newValue)
     }
   }
- 
+
   const validateAll = () => {
     const dataNeedValid = {
       pname: pname.current.value !== '',
@@ -148,19 +148,18 @@ function PostForm({ update }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (validateAll()) {
-      
-      const logoUrl = ''
-      if(logo){
+
+      let logoUrl = ''
+      if (logo) {
         const logoFile = await uploadImage(logo)
         logoUrl = logoFile.secure_url
       }
-      
-      const coverImgUrl = ''
-      if(bg){
+
+      let coverImgUrl = ''
+      if (bg) {
         const coverImgFile = await uploadImage(bg)
         coverImgUrl = coverImgFile.secure_url
       }
-     
 
       const data = {
         projectName: pname.current.value,
@@ -171,11 +170,13 @@ function PostForm({ update }) {
         cover_img_url: coverImgUrl,
         status: status,
         subject_id: subject.map((s) => s.id),
-        techs: techOptions,
+        techs: techOptions.map((tech) => tech.value),
         tags: tagOptions.map((tag) => tag.label),
         // socialLink: socialLink.current.value,
         githubLink: githubLink.current.value,
       }
+
+      console.log(data)
 
       // Todo: change backend url
       axios.post('http://127.0.0.1:3333/api/posts', {
@@ -183,7 +184,7 @@ function PostForm({ update }) {
         userId: "64c4d435f70d4d57567f6877"
       }).then((res) => {
         console.log(res.data._id)
-         navigate(`/posts/${res.data._id}`)
+        navigate(`/posts/${res.data._id}`)
       })
       return
     }
@@ -250,7 +251,7 @@ function PostForm({ update }) {
                     }
                     placeholder={validated.pname ? 'ENTER PROJECT NAME' : 'PROJECT NAME IS REQUIRED'}
                   />
-                  <label htmlFor='pname'><FontAwesomeIcon icon={faPen}/></label>
+                  <label htmlFor='pname'><FontAwesomeIcon icon={faPen} /></label>
                 </div>
                 <div className='flex'>
                   <input
@@ -262,7 +263,7 @@ function PostForm({ update }) {
                     }
                     placeholder={validated.title ? 'Title for your project' : 'Title is required'}
                   />
-                  <label htmlFor='title'><FontAwesomeIcon icon={faPen}/></label>
+                  <label htmlFor='title'><FontAwesomeIcon icon={faPen} /></label>
                 </div>
               </div>
             </div>
@@ -323,7 +324,7 @@ function PostForm({ update }) {
                 value={subject}
                 
               /> */}
-              <Select options={subjects} isMulti styles={techStyles} onChange={handleSubjectChange}  value={subject} filterOption={filterOption} getOptionLabel={getOptionLabel}  />
+              <Select options={subjects} isMulti styles={techStyles} onChange={handleSubjectChange} value={subject} filterOption={filterOption} getOptionLabel={getOptionLabel} />
             </div>
             <div className='mb-5 flex w-full items-center'>
               <span className='mr-2 text-lg font-bold'>Status:</span>
