@@ -41,6 +41,10 @@ export default function Posts() {
               logoUrl={post.logo_url}
               stars={post.stars}
               tags={post.tags}
+              description={post.description}
+              subjectId={post.subject_id}
+              coverImgUrl={post.cover_img_url}
+              techs={post.techs}
             />
           </div>
 

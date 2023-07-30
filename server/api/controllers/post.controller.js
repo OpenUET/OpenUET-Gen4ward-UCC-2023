@@ -30,6 +30,7 @@ export const createPost = async (req, res) => {
     cover_img_url,
     logo_url,
     subject_id,
+    techs
   } = data;
 
   const resp = await postService.createPost({
@@ -44,6 +45,7 @@ export const createPost = async (req, res) => {
     cover_img_url,
     logo_url,
     subject_id,
+    techs
   });
   return res.status(201).json(resp);
 };
@@ -63,6 +65,7 @@ export const updatePostById = async (req, res) => {
     cover_img_url,
     logo_url,
     subject_id,
+    techs
   } = data;
 
   const resp = await postService.updatePostById(postId, {
@@ -77,6 +80,7 @@ export const updatePostById = async (req, res) => {
     cover_img_url,
     logo_url,
     subject_id,
+    techs
   });
   return res.status(200).json(resp);
 };
