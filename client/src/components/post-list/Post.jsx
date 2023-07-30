@@ -1,16 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Profile from '../profile/Profile'
+import axios from 'axios'
+import image from '../../assets'
 
-const Post = ({ id, title, projectName, status, logoUrl, coverImgUrl, stars, members, techs, tags }) => {
+const Post = ({ id, title, projectName, status, logoUrl, coverImgUrl, stars, members, techs, tags, owner: ownerId }) => {
+	const [owner, setOwner] = useState({})
+
+	useEffect(() => {
+		// Get owner
+		axios.get(`http://127.0.0.1:3333/api/users/${ownerId}`)
+			.then(res => res.data)
+			.then(data => setOwner(data))
+			.catch(err => console.log(err))
+
+	}, [ownerId])
+
 	return (
-		<a href={'/posts/' + id} className="w-full">
-			<div className={`bg-[url('${coverImgUrl || '/images/Nachoneko.jpg'}')] bg-cover flex flex-col w-full rounded-xl items-start justify-between`}>
+		<a href={'/posts/' + id}>
+			<div style={{'--image-url': `url(${coverImgUrl || image.defaultBg})`}} className={`bg-[image:var(--image-url)] bg-cover flex flex-col w-full rounded-xl items-start justify-between border `}>
 				<div className="flex items-start justify-between w-full flex-col md:flex-row">
 					{/* Project name */}
 					<div className="flex flex-1 items-center justify-start space-x-4 ml-8 mt-8 flex-shrink-0">
 						<div className="flex items-center justify-center">
 							<div className="w-16 h-16 rounded-full overflow-hidden">
-								<img src={logoUrl} alt={"Project Logo"} className="w-full h-full object-cover" />
+								<img src={logoUrl || "https://cdn4.iconfinder.com/data/icons/seo-outline-422/50/innovation-gear-lightbulb-idea-technology-512.png"} alt={"Project Logo"} className="w-full h-full object-cover" />
 							</div>
 						</div>
 						<div className="flex flex-col items-start">
@@ -33,20 +46,14 @@ const Post = ({ id, title, projectName, status, logoUrl, coverImgUrl, stars, mem
 							<div className="flex flex-1 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Members</div>
 							<div className="flex flex-1 items-center justify-start space-x-4">
 								<div className="flex items-center justify-center">
+									<div className="w-6 h-6 rounded-full overflow-hidden mr-1">
+										<Profile id={ownerId} avatar_url={owner.avatarUrl} full_name={''} />
+									</div>
 									{members.slice(0, 3).map((member, index) => (
 										<div key={index} className="w-6 h-6 rounded-full overflow-hidden mr-1">
-											<Profile id={member.id} avatar_url={member.avatar_url} full_name={member.name} />
+											<Profile id={member.id} avatar_url={member.avatarUrl} full_name={member.name} />
 										</div>
 									))}
-									<div className="w-6 h-6 rounded-full overflow-hidden mr-1">
-										<Profile />
-									</div>
-									<div className="w-6 h-6 rounded-full overflow-hidden mr-1">
-										<Profile />
-									</div>
-									<div className="w-6 h-6 rounded-full overflow-hidden mr-1">
-										<Profile />
-									</div>
 									{members.length > 3 && (
 										<div className="overflow-hidden text-white text-right drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">+ {members.length - 3}</div>
 									)}
@@ -62,7 +69,7 @@ const Post = ({ id, title, projectName, status, logoUrl, coverImgUrl, stars, mem
 						<div className="flex items-center justify-center">
 							{techs?.slice(0, 3).map((tech, index) => (
 								<div key={index} className="w-6 h-6 rounded-full overflow-hidden mr-1">
-									<img src={tech.logoUrl} alt={tech.name} className="w-full h-full object-cover" />
+									<img src={''} alt={tech} className="w-full h-full object-cover" />
 								</div>
 							))}
 							<div className="w-6 h-6 rounded-full overflow-hidden mr-1">

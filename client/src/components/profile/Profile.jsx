@@ -1,5 +1,7 @@
-import { autoUpdate, flip, offset, shift, useClick, useFloating, useFocus, useHover, useInteractions } from '@floating-ui/react';
+import { autoUpdate, flip, offset, shift, useFloating, useHover, useInteractions } from '@floating-ui/react';
+import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Profile = ({
   size = 32,
@@ -7,6 +9,7 @@ const Profile = ({
   full_name,
   id,
 }) => {
+  const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const { refs, context, floatingStyles } = useFloating({
@@ -28,16 +31,18 @@ const Profile = ({
 
   useEffect(() => {
     if (!profile && isOpen) {
-      // supabase
-      //   .from('profiles')
-      //   .select('year_of_birth, is_male, contact, description')
-      //   .eq('id', id)
-      //   .then(({ data, error }) => {
-      //     if (error) throw error;
-      //     if (data) setProfile(data[0]);
-      //   })
+      // Todo: change backend url
+      axios.get(`http://127.0.0.1:3333/api/users/${id}`)
+        .then(res => res.data)
+        .then(data => setProfile(data))
+        // .then(data => console.log(data))
     }
   }, [isOpen])
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    navigate(`/profile/${id}`);
+  }
 
   return (
     <>
@@ -45,6 +50,7 @@ const Profile = ({
         ref={refs.setReference}
         {...getReferenceProps()}
         className="flex-shrink-0"
+        onClick={handleClick}
       >
         <img
           height={size}
@@ -68,16 +74,14 @@ const Profile = ({
               height={96}
               width={96}
               alt="Avatar"
-              src={avatar_url || '/images/placeholder.jpg'}
+              src={avatar_url || profile?.avatarUrl || '/images/placeholder.jpg'}
               className="rounded-full aspect-square object-cover"
             />
           </div>
 
           <div className="flex flex-col gap-2 text-neutral-600 max-w-[216px]">
             <div>
-              <span className="text-lg font-semibold whitespace-nowrap">{full_name} {' '}</span>
-              <span>{profile?.year_of_birth ? `(${profile?.year_of_birth}) ` : ' '}</span>
-              <span>({profile?.is_male === undefined ? "" : profile?.is_male ? "Nam" : "Nữ"})</span>
+              <span className="text-lg font-semibold whitespace-nowrap">{full_name || profile?.fullname} {' '}</span>
             </div>
 
             <div className="whitespace-pre-line text-sm">{profile?.contact}</div>

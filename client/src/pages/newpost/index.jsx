@@ -7,14 +7,14 @@ import MembersMenu from '../../components/member-list/MembersMenu'
 import ListingRequests from '../../components/member-list/ListingRequests'
 import NavBar from '../../components/nav/NavBar'
 
-function NewPost() {
+function NewPost({update}) {
   return (
     <>
       <Toaster />
       <NavBar />
       <div className='max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4'>
         <div className='pt-28 flex justify-end gap-6'>
-          <PostForm/>
+          <PostForm update/>
 
           <div className='w-[30%] flex flex-col gap-4'>
             <OwnerInfo />
