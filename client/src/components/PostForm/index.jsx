@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TextareaAutosize from 'react-textarea-autosize'
-import { faCamera, faHashtag, faMicrochip, faSchool, faShareNodes } from '@fortawesome/free-solid-svg-icons'
-import { faReact, faJs, faHtml5, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faC, faCamera, faCode, faFlask, faGem, faHashtag, faMicrochip, faPen, faSchool, faShareNodes } from '@fortawesome/free-solid-svg-icons'
+import { faReact, faJs, faHtml5, faGithub, faJava, faPhp, faPython, faLaravel, faSwift, faAngular } from '@fortawesome/free-brands-svg-icons'
 import { useRef, useState } from 'react'
 import chroma from 'chroma-js'
 import CreatableSelect from 'react-select/creatable'
@@ -13,11 +13,21 @@ import 'react-quill/dist/quill.snow.css'
 import 'react-quill/dist/quill.snow.css'
 import './postform.css'
 import { formats, modules, subjects, tagsStyles, techStyles } from '../../utils/constanceValue'
+import image from '../../assets'
 
 const tech = [
   { value: 'reactjs', label: 'ReactJs', icon: faReact, color: 'rgb(14, 165, 233)' },
   { value: 'js', label: 'JavaScript', icon: faJs, color: 'yellow' },
-  { value: 'html', label: 'HTML', icon: faHtml5, color: 'orange' }
+  { value: 'html', label: 'HTML', icon: faHtml5, color: 'orange' },
+  { value: 'java', label: 'Java', icon: faJava, color: 'white' },
+  { value: 'python', label: 'Python', icon: faPython, color: 'blue' },
+  { value: 'flask', label: 'Flask', icon:faFlask , color: 'white' },
+  { value: 'php', label: 'PhP', icon: faPhp, color: 'white' },
+  { value: 'ror', label: 'Ruby on Rails', icon: faGem, color: 'red' },
+  { value: 'lavarel', label: 'Lavarel', icon: faLaravel, color: 'red' },
+  { value: 'swift', label: 'SwiftUI', icon: faSwift, color: 'orange' },
+  { value: 'angular', label: 'Angular', icon: faAngular, color: 'red' },
+  { value: 'kot', label: 'Kotlin', icon: faCode, color: 'purple' }
 ]
 const colourOptions = [
   { value: 'ocean', label: 'Ocean', color: '#00B8D9' },
@@ -159,12 +169,14 @@ function PostForm({ update }) {
       <div className='flex flex-col w-full text-white'>
         {/* Project cover */}
         <div
-          className={`flex flex-col w-full h-[250px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-xl object-contain items-end justify-between mb-6 relative`}
+          className={`flex flex-col w-full h-[250px]  rounded-xl object-contain items-end justify-between mb-6 relative`}
         >
-          <img
-            src={bg?.preview || ''}
-            className='absolute top-0 h-full right-[50%] z-0   translate-x-1/2 object-center object-contain'
-          />
+          <div className='absolute top-0 rounded-2xl w-full h-full  object-center overflow-hidden'>
+            <img
+              src={bg?.preview || image.defaultBg}
+              className='w-full object-cover'
+            />
+          </div>
           <label
             htmlFor='bg'
             className='bg-white rounded-xl w-40 py-1 text-black-50 font-bold flex justify-center items-center bottom-2 right-4 absolute h-fit'
@@ -185,26 +197,34 @@ function PostForm({ update }) {
                 </label>
                 <input accept='image/*' type='file' id='logo' onChange={handleLogo} className='hidden' />
                 <div className='w-16 h-16 rounded-full overflow-hidden '>
-                  <img src={logo?.preview || '../../assets//download.jpg'} alt={''} className='w-full outline-none bg-gradient-to-l from-indigo-500 via-purple-500 to-pink-500  h-full object-cover' />
+                  <img src={logo?.preview || image.defaultLogo} alt={''} className='w-full outline-none bg-black-50  h-full object-cover' />
                 </div>
               </div>
-              <div className='flex flex-col items-start w-1/2 z-10 '>
-                <input
-                  ref={pname}
-                  className={
-                    `bg-transparent font-bold outline-none text-xl  caret-white w-full ` +
-                    (!validated.pname ? ' placeholder:text-red-500' : '')
-                  }
-                  placeholder={validated.pname ? 'ENTER PROJECT NAME' : 'PROJECT NAME IS REQUIRED'}
-                />
-                <input
-                  ref={title}
-                  className={
-                    'bg-transparent  outline-none caret-white w-full' +
-                    (!validated.title ? ' placeholder:text-red-500' : '')
-                  }
-                  placeholder={validated.title ? 'Title for your project' : 'Title is required'}
-                />
+              <div className='flex flex-col items-start w-fit  z-10 '>
+                <div className='flex justify-start'>
+                  <input
+                    ref={pname}
+                    id='pname'
+                    className={
+                      `bg-transparent font-bold outline-none text-xl placeholder:text-white  caret-white ` +
+                      (!validated.pname ? ' placeholder:text-red-500' : '')
+                    }
+                    placeholder={validated.pname ? 'ENTER PROJECT NAME' : 'PROJECT NAME IS REQUIRED'}
+                  />
+                  <label htmlFor='pname'><FontAwesomeIcon icon={faPen}/></label>
+                </div>
+                <div className='flex'>
+                  <input
+                    ref={title}
+                    id='title'
+                    className={
+                      'bg-transparent  outline-none placeholder:text-white caret-white ' +
+                      (!validated.title ? ' placeholder:text-red-500' : '')
+                    }
+                    placeholder={validated.title ? 'Title for your project' : 'Title is required'}
+                  />
+                  <label htmlFor='title'><FontAwesomeIcon icon={faPen}/></label>
+                </div>
               </div>
             </div>
           </div>
@@ -250,20 +270,6 @@ function PostForm({ update }) {
               <label htmlFor='subject' className='text-2xl mr-3'>
                 <FontAwesomeIcon icon={faSchool} className='w-6' />
               </label>
-              {/* <input
-                id='subject'
-                ref={subject}
-                placeholder='Enter class name'
-                className=' placeholder:text-white bg-transparent outline-none hover:border-opacity-70 caret-white border-2 border-white rounded-lg p-1 px-2'
-              /> */}
-              {/* <Select
-                components={{ Option }}
-                onChange={handleSubjectChange}
-                placeholder={'Select your subject... '}
-                options={subjects}
-                value={subject}
-                
-              /> */}
               <Select options={subjects} isMulti styles={techStyles} onChange={handleSubjectChange}  value={subject} filterOption={filterOption} getOptionLabel={getOptionLabel}  />
             </div>
             <div className='mb-5 flex w-full items-center'>
