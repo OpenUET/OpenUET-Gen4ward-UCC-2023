@@ -36,8 +36,8 @@ const RightSideBar = () => {
           {cookies.shortcut && cookies.shortcut.map((item, index) => (
             <a href={item.url} key={index} className="flex items-center justify-between space-x-4 mt-4">
               <div className="flex items-center justify-center">
-                <div className="w-10 h-10 rounded-full overflow-hidden">
-                  <img src={item.imageUrl} alt={"Shortcut icon"} className="w-full h-full object-cover" />
+                <div className="w-10 h-10 rounded-full overflow-hidden border">
+                  <img src={item.imageUrl || 'https://cdn4.iconfinder.com/data/icons/seo-outline-422/50/innovation-gear-lightbulb-idea-technology-512.png'} alt={"Shortcut icon"} className="w-full h-full object-cover" />
                 </div>
                 <div className="flex flex-1 text-white text-lg ml-4">{item.title}</div>
               </div>

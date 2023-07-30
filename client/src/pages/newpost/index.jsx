@@ -6,8 +6,20 @@ import MembersInfo from '../../components/member-list/MembersInfo'
 import MembersMenu from '../../components/member-list/MembersMenu'
 import ListingRequests from '../../components/member-list/ListingRequests'
 import NavBar from '../../components/nav/NavBar'
-
+import { useParams } from 'react-router-dom';
 function NewPost({update}) {
+  
+
+  // useEffect(() => {
+  //   const id = location.pathname.split('/')[2];
+
+  //   fetch('http://127.0.0.1:3333/api/posts/' + id)
+  //     .then(res => res.json())
+  //     // .then(data => console.log(data))
+  //     .then(data => {
+  //       setPost(data)
+  //     })
+  // }, [])
   return (
     <>
       <Toaster />
