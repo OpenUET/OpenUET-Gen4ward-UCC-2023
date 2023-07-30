@@ -5,8 +5,10 @@ import { AUTH_ACTIONS, selectUser } from '../../redux/slices/authSlice'
 import MenuItem from '../MenuItem'
 import Avatar from '../profile/Avatar'
 import AuthPopup from './AuthPopup'
+import { useNavigate } from 'react-router-dom'
 
 export default function UserMenu() {
+  const navigate = useNavigate();
   const menuRef = useRef(null)
   const [menuOpen, setMenuOpen] = useState(false)
  
@@ -63,6 +65,7 @@ export default function UserMenu() {
                   label='Profile'
                   onClick={() => {
                     // change route
+                    navigate(`/profile/${userInfo._id}`);
                   }}
                   light
                 />
